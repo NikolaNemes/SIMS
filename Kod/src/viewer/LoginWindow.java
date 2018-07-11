@@ -1,5 +1,6 @@
 package viewer;
 
+import controller.LoginActions;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -8,8 +9,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginWindow extends JFrame{
+    LoginActions controller;
 
-    public LoginWindow() throws HeadlessException {
+    public void setController(LoginActions controller) {
+        this.controller = controller;
+    }
+
+    public LoginWindow() {
         setSize(450, 200);
         setLayout(new MigLayout("wrap 5"));
         JLabel welcomeLabel = new JLabel("WELCOME");
@@ -18,9 +24,14 @@ public class LoginWindow extends JFrame{
         JLabel passwordLabel = new JLabel("Password: ");
         JPasswordField passwordField = new JPasswordField(15);
         JButton loginButton = new JButton("Login");
+        JLabel loginFailed = new JLabel("Wrong username or password");
+        loginFailed.setVisible(false);
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                
+                controller.checkUser(usernameField.getText(), passwordField.getText());
+                usernameField.setText("");
+                passwordField.setText("");
+                loginFailed.setVisible(true);
             }
         });
 
@@ -30,6 +41,6 @@ public class LoginWindow extends JFrame{
         add(passwordLabel);
         add(passwordField, "wrap");
         add(loginButton);
-        setVisible(true);
+        add(loginFailed);
     }
 }
