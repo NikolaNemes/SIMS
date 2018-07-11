@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Centrala {
 
@@ -21,8 +22,55 @@ public class Centrala {
 
     void izbrisiRadnuStanicu(RadnaStanica radnaStanica) {
         for (RadnaStanica i : this.radneStanice) {
-            
+            if (i.equals(radnaStanica)) {
+                i.setAktivna(false);
+                break;
+            }
         }
     }
+
+    void dodajDeonicu(Deonica deonica) {
+        this.deonice.add(deonica);
+    }
+
+    void izbrisiDeonicu(Deonica deonica) {
+        for (Deonica i : this.deonice) {
+            if (i.equals(deonica)) {
+                i.setAktivna(false);
+                break;
+            }
+        }
+    }
+
+    void dodajKorisnika(Korisnik korisnik) {
+        this.korisnici.add(korisnik);
+    }
+
+    void izbrisiKorisnika(Korisnik korisnik) {
+        for (Korisnik i : this.korisnici) {
+            if (i.equals(korisnik)) {
+                i.setAktivan(false);
+                break;
+            }
+        }
+    }
+
+    void izvestajBrojVozila(Date pocetak, Date kraj) {
+
+    }
+
+    void izvestajIznosNovca(Date pocetak, Date kraj) {
+
+    }
+
+    void izvestajBrojVozilaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
+
+    }
+
+    void izvestajNovcaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
+
+    }
+
+
 
 }
