@@ -7,10 +7,7 @@ public class Korisnik {
     private String lozinka;
     private String ime;
     private String prezime;
-
-    public Korisnik() {
-
-    }
+    private boolean aktivan;
 
     public Korisnik(TipKorisnika tip, String korisnickoIme, String lozinka, String ime, String prezime) {
         this.tip = tip;
@@ -18,6 +15,7 @@ public class Korisnik {
         this.lozinka = lozinka;
         this.ime = ime;
         this.prezime = prezime;
+        this.aktivan = true;
     }
 
     public TipKorisnika getTip() {
@@ -58,5 +56,13 @@ public class Korisnik {
 
     public void setPrezime(String prezime) {
         this.prezime = prezime;
+    }
+
+    public boolean isAktivan() {
+        return aktivan;
+    }
+
+    public void setAktivan(boolean aktivan) {
+        this.aktivan = aktivan;
     }
 }
