@@ -2,26 +2,18 @@ package model;
 
 import java.util.Date;
 
-public class ProlazakVozila {
+public class DolazakVozila {
 
-    private Deonica predjenaDeonica;
     private KategorijaVozila kategorija;
     private Date vreme;
     private String registracija;
+    private Deonica deonica;
 
-    public ProlazakVozila(Deonica predjenaDeonica, KategorijaVozila kategorija, Date vreme, String registracija) {
-        this.predjenaDeonica = predjenaDeonica;
+    public DolazakVozila(KategorijaVozila kategorija, Date vreme, String registracija, Deonica deonica) {
         this.kategorija = kategorija;
         this.vreme = vreme;
         this.registracija = registracija;
-    }
-
-    public Deonica getPredjenaDeonica() {
-        return predjenaDeonica;
-    }
-
-    public void setPredjenaDeonica(Deonica predjenaDeonica) {
-        this.predjenaDeonica = predjenaDeonica;
+        this.deonica = deonica;
     }
 
     public KategorijaVozila getKategorija() {
@@ -46,5 +38,13 @@ public class ProlazakVozila {
 
     public void setRegistracija(String registracija) {
         this.registracija = registracija;
+    }
+
+    public Deonica getDeonica() {
+        return deonica;
+    }
+
+    public void setDeonica(Deonica deonica) {
+        this.deonica = deonica;
     }
 }

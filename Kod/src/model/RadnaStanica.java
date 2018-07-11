@@ -9,13 +9,14 @@ public class RadnaStanica {
     private ArrayList<ProlazakVozila> prolasci;
     private ArrayList<NaplatnoMesto> naplatnaMesta;
     private ArrayList<Kvar> kvarovi;
-
+    private ArrayList<Deonica> deonice;
 
     public RadnaStanica(String mesto) {
         this.mesto = mesto;
         this.aktivna = false;
         this.prolasci = new ArrayList<ProlazakVozila>();
         this.naplatnaMesta = new ArrayList<NaplatnoMesto>();
+        this.deonice = new ArrayList<Deonica>();
     }
 
     public void dodajNaplatnoMesto(NaplatnoMesto naplatnoMesto) {
@@ -44,6 +45,21 @@ public class RadnaStanica {
         }
     }
 
+    public Deonica pronadjiDeonicu(RadnaStanica polaznaStanica) {
+        Deonica retVal = null;
+        for (Deonica i : this.deonice) {
+            if (i.getPolaznaStanica().equals(polaznaStanica)) {
+                retVal = i;
+                break;
+            }
+        }
+        return retVal;
+    }
+
+    public void dodajProlazakVozila(ProlazakVozila prolazakVozila) {
+        this.prolasci.add(prolazakVozila);
+    }
+
     public String getMesto() {
         return mesto;
     }
@@ -66,5 +82,13 @@ public class RadnaStanica {
 
     public void setProlasci(ArrayList<ProlazakVozila> prolasci) {
         this.prolasci = prolasci;
+    }
+
+    public ArrayList<Deonica> getDeonice() {
+        return deonice;
+    }
+
+    public void setDeonice(ArrayList<Deonica> deonice) {
+        this.deonice = deonice;
     }
 }
