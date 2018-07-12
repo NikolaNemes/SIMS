@@ -18,8 +18,10 @@ public class CentralWorkerWindow extends JFrame{
         setLayout(new MigLayout("wrap 5"));
         JMenuBar meniTraka = new JMenuBar();
         JMenu novoMeni = new JMenu("Novo");
+        JMenu izmeniMeni = new JMenu("Izmeni");
         JMenu izvestajMeni = new JMenu("Izvestaj");
         meniTraka.add(novoMeni);
+        meniTraka.add(izmeniMeni);
         meniTraka.add(izvestajMeni);
 
         JMenuItem novaRSMeniDugme = new JMenuItem("Radna stanica");
@@ -47,6 +49,16 @@ public class CentralWorkerWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 DodajKorisnikaWindow dialog = new DodajKorisnikaWindow(model);
+                dialog.setVisible(true);
+            }
+        });
+
+        JMenuItem izmeniDeonicuMeniDugme = new JMenuItem("Deonicu");
+        izmeniMeni.add(izmeniDeonicuMeniDugme);
+        izmeniDeonicuMeniDugme.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IzmeniDeonicuWindow dialog = new IzmeniDeonicuWindow(model);
                 dialog.setVisible(true);
             }
         });
