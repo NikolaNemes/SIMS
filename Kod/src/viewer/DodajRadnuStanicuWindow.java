@@ -1,11 +1,17 @@
 package viewer;
 
+import controller.DodajRadnuStanicuAkcije;
+import model.Centrala;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 
 public class DodajRadnuStanicuWindow extends JFrame {
-    public DodajRadnuStanicuWindow() {
+    private Centrala model;
+    private DodajRadnuStanicuAkcije controller;
+    public DodajRadnuStanicuWindow(Centrala model) {
+        this.model = model;
+        this.controller = new DodajRadnuStanicuAkcije(model);
         setSize(400, 300);
         setLayout(new MigLayout("wrap 5"));
         JLabel unosLabela = new JLabel("Unos podataka za novu radnu stanicu");

@@ -17,8 +17,8 @@ public class CentralWorkerWindow extends JFrame{
     public void setController(CentralWorkerActions controller) {
         this.controller = controller;
     }
-    public void setModel(Centrala c) {this.model = c;}
-    public CentralWorkerWindow() {
+    public CentralWorkerWindow(Centrala centrala) {
+        this.model = centrala;
         setSize(800, 600);
         setLayout(new MigLayout("wrap 5"));
         JMenuBar meniTraka = new JMenuBar();
@@ -40,7 +40,7 @@ public class CentralWorkerWindow extends JFrame{
         novaDeonicaMeniDugme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.dodajDeonicu(model);
+                controller.dodajDeonicu();
             }
         });
 
@@ -66,7 +66,7 @@ public class CentralWorkerWindow extends JFrame{
         novaDeonicaDugme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.dodajDeonicu(model);
+                controller.dodajDeonicu();
             }
         });
 

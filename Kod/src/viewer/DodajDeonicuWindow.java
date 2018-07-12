@@ -1,5 +1,6 @@
 package viewer;
 
+import controller.DodajDeonicuAkcije;
 import model.Centrala;
 import model.RadnaStanica;
 import net.miginfocom.swing.MigLayout;
@@ -7,10 +8,12 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 
 public class DodajDeonicuWindow extends JFrame {
-    Centrala modelCentrala;
+    private DodajDeonicuAkcije controller;
+    private Centrala model;
 
     public DodajDeonicuWindow(Centrala model){
-        this.modelCentrala = model;
+        this.model = model;
+        this.controller = new DodajDeonicuAkcije(model);
         setSize(400, 300);
         setLayout(new MigLayout("wrap 5"));
         JLabel unosLabela = new JLabel("Unos podataka za novu deonicu");

@@ -16,9 +16,8 @@ public class Application {
         centrala.dodajRadnuStanicu(new RadnaStanica("NS", "1"));
         centrala.dodajRadnuStanicu(new RadnaStanica("BG", "2"));
         centrala.dodajRadnuStanicu(new RadnaStanica("LZN", "3"));
-        CentralWorkerWindow cww = new CentralWorkerWindow();
-        CentralWorkerActions cwa = new CentralWorkerActions();
-        cww.setModel(centrala);
+        CentralWorkerWindow cww = new CentralWorkerWindow(centrala);
+        CentralWorkerActions cwa = new CentralWorkerActions(centrala);
         cww.setController(cwa);
         cww.setVisible(true);
     }

@@ -1,5 +1,7 @@
 package viewer;
 
+import controller.DodajKorisnikaAkcije;
+import model.Centrala;
 import model.TipKorisnika;
 import net.miginfocom.swing.MigLayout;
 
@@ -8,7 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DodajKorisnikaWindow extends JFrame {
-    public DodajKorisnikaWindow() {
+    private DodajKorisnikaAkcije controller;
+    private Centrala modelCentrala;
+
+    public DodajKorisnikaWindow(Centrala model) {
+        this.modelCentrala = model;
+        this.controller = new DodajKorisnikaAkcije(model);
         setSize(400, 300);
         setLayout(new MigLayout("wrap 5"));
         JLabel unosLabela = new JLabel("Unos podataka za novog korisnika");
@@ -31,7 +38,9 @@ public class DodajKorisnikaWindow extends JFrame {
         JButton dodajDugme = new JButton("Dodaj korisnika");
         dodajDugme.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                controller.dodajKorisnika(korisnickoIme.getText(), lozinka.getText(), ime.getText(), prezime.getText(),
+                        (TipKorisnika) tipKorisnika.getItemAt(tipKorisnika.getSelectedIndex()));
+                setVisible(false);
             }
         });
 
