@@ -25,8 +25,8 @@ public class Korisnik implements Serializable {
 
     @Override
     public String toString() {
-        String retVal = this.tip + "\\|" + this.korisnickoIme + "\\|" + this.lozinka +
-                "\\|" + this.ime + "\\|" + this.prezime + "\\|" + this.id;
+        String retVal = this.tip + "|" + this.korisnickoIme + "|" + this.lozinka +
+                "|" + this.ime + "|" + this.prezime + "|" + this.id;
         return retVal;
     }
 

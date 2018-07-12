@@ -1,3 +1,4 @@
+import UI.FajlMenadzer;
 import controller.CentralWorkerActions;
 import controller.LoginActions;
 import model.Centrala;
@@ -13,6 +14,7 @@ public class Application {
         lw.setVisible(true);
         */
         Centrala centrala = new Centrala();
+        FajlMenadzer.ucitajKorisnike("korisnici.txt", centrala);
         centrala.dodajRadnuStanicu(new RadnaStanica("NS", "1"));
         centrala.dodajRadnuStanicu(new RadnaStanica("BG", "2"));
         centrala.dodajRadnuStanicu(new RadnaStanica("LZN", "3"));
