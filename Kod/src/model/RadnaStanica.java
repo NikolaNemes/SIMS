@@ -91,7 +91,7 @@ public class RadnaStanica {
         }
         return retVal;
     }
-    public Deonica pronadjeDeonicu(String id) {
+    public Deonica pronadjiDeonicu(String id) {
         Deonica retVal = null;
         for (Deonica i : deonice) {
             if (i.getId().equals(id)) {
@@ -102,6 +102,24 @@ public class RadnaStanica {
         return retVal;
     }
 
+    public boolean dodajDeonicu(Deonica deonica) {
+        Deonica temp = null;
+        temp = pronadjiDeonicu(deonica.getId());
+        if (temp == null) {
+            this.deonice.add(deonica);
+            return true;
+        }
+        return false;
+    }
+
+    public void izbrisiDeonicu(String id) {
+        for (Deonica i : this.deonice) {
+            if (i.getId().equals(id)) {
+                i.setAktivna(false);
+            }
+            break;
+        }
+    }
 
     public ProlazakVozila pronadjiProlazakVozila(String id) {
         ProlazakVozila retVal = null;
