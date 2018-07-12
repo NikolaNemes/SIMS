@@ -142,7 +142,10 @@ public class RadnaStanica {
         return false;
     }
 
-
+    @Override
+    public String toString() {
+        return mesto;
+    }
 
     public String getMesto() {
         return mesto;
