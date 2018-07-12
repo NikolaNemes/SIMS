@@ -1,1 +1,5 @@
-Radnik u centrali|nestin|mypass69|Nikola|Nemes|nestin
+<model.Centrala>
+  <korisnici/>
+  <deonice/>
+  <radneStanice/>
+</model.Centrala>
