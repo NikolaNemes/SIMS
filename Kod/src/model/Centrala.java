@@ -120,4 +120,16 @@ public class Centrala {
     public void izvestajNovcaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
 
     }
+
+    public ArrayList<Korisnik> getKorisnici() {
+        return korisnici;
+    }
+
+    public ArrayList<Deonica> getDeonice() {
+        return deonice;
+    }
+
+    public ArrayList<RadnaStanica> getRadneStanice() {
+        return radneStanice;
+    }
 }
