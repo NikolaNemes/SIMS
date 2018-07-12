@@ -7,10 +7,12 @@ public class Kvar {
     private Date vreme;
     private String opis;
     private boolean aktivan;
+    private String id;
 
-    public Kvar(Date vreme, String opis) {
+    public Kvar(Date vreme, String opis, String id) {
         this.vreme = vreme;
         this.opis = opis;
+        this.id = id;
     }
 
     public Date getVreme() {
@@ -35,5 +37,13 @@ public class Kvar {
 
     public void setAktivan(boolean aktivan) {
         this.aktivan = aktivan;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
