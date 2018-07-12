@@ -17,6 +17,7 @@ public class RadnaStanica {
         this.aktivna = false;
         this.prolasci = new ArrayList<ProlazakVozila>();
         this.naplatnaMesta = new ArrayList<NaplatnoMesto>();
+        this.kvarovi = new ArrayList<Kvar>();
         this.deonice = new ArrayList<Deonica>();
         this.id = id;
     }

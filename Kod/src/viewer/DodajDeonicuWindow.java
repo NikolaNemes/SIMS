@@ -1,24 +1,23 @@
 package viewer;
 
-import controller.DodajDeonicuAkcije;
-import model.Centrala;
-import model.RadnaStanica;
+import model.*;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DodajDeonicuWindow extends JFrame {
-    private DodajDeonicuAkcije controller;
     private Centrala model;
 
     public DodajDeonicuWindow(Centrala model){
         this.model = model;
-        this.controller = new DodajDeonicuAkcije(model);
         setSize(400, 300);
         setLayout(new MigLayout("wrap 5"));
         JLabel unosLabela = new JLabel("Unos podataka za novu deonicu");
-        JLabel idLabela = new JLabel("Id:");
-        JTextField id = new JTextField(10);
         RadnaStanica[] stanice = new RadnaStanica[model.getRadneStanice().size()];
         stanice  = model.getRadneStanice().toArray(stanice);
         JLabel rs1labela = new JLabel("Radna stanica 1:");
@@ -33,11 +32,25 @@ public class DodajDeonicuWindow extends JFrame {
         JTextField cenaKatC = new JTextField(5);
         JLabel cenaKatDLabela = new JLabel("Cena kategorija D:");
         JTextField cenaKatD = new JTextField(5);
+
+        DodajDeonicuWindow temp = this;
         JButton dodajDugme = new JButton("Dodaj deonicu");
+        dodajDugme.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean uspeh = dodajDeonicu((RadnaStanica) staniceIzbor1.getItemAt(staniceIzbor1.getSelectedIndex()),
+                        (RadnaStanica) staniceIzbor2.getItemAt(staniceIzbor2.getSelectedIndex()),
+                        cenaKatA.getText(), cenaKatB.getText(), cenaKatC.getText(), cenaKatD.getText());
+                if (uspeh){
+                    JOptionPane.showMessageDialog(temp, "Deonica uspesno dodata");
+                }else{
+                    JOptionPane.showMessageDialog(temp, "Dodavanje deonice neuspesno");
+                }
+                setVisible(false);
+            }
+        });
 
         add(unosLabela, "wrap");
-        add(idLabela);
-        add(id, "wrap");
         add(rs1labela);
         add(staniceIzbor1, "wrap");
         add(rs2labela);
@@ -51,5 +64,22 @@ public class DodajDeonicuWindow extends JFrame {
         add(cenaKatDLabela);
         add(cenaKatD, "wrap");
         add(dodajDugme);
+    }
+
+    public boolean dodajDeonicu(RadnaStanica rs1, RadnaStanica rs2, String c1, String c2, String c3, String c4){
+        Deonica d = new Deonica(rs1, rs2, String.valueOf(model.getDeonice().size() + 1));
+        boolean uspeh = model.dodajDeonicu(d);
+        if (uspeh){
+            //FajlMenadzer.snimiDeonice("deonice.txt", model);
+            Map<KategorijaVozila, Integer> ceneKat = new HashMap<KategorijaVozila, Integer>();
+            ceneKat.put(KategorijaVozila.A, Integer.valueOf(c1));
+            ceneKat.put(KategorijaVozila.B, Integer.valueOf(c2));
+            ceneKat.put(KategorijaVozila.C, Integer.valueOf(c3));
+            ceneKat.put(KategorijaVozila.D, Integer.valueOf(c4));
+            NaplatneCene cene = new NaplatneCene(new Date(), null, ceneKat, "1");
+            d.setTrenutneCene(cene);
+            d.getNaplatneCene().add(cene);
+        }
+        return uspeh;
     }
 }

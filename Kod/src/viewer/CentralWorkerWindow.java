@@ -1,7 +1,6 @@
 package viewer;
 
 
-import controller.CentralWorkerActions;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.swingx.JXDatePicker;
 import model.Centrala;
@@ -11,12 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CentralWorkerWindow extends JFrame{
-    private CentralWorkerActions controller;
     private Centrala model;
 
-    public void setController(CentralWorkerActions controller) {
-        this.controller = controller;
-    }
     public CentralWorkerWindow(Centrala centrala) {
         this.model = centrala;
         setSize(800, 600);
@@ -31,7 +26,8 @@ public class CentralWorkerWindow extends JFrame{
         novoMeni.add(novaRSMeniDugme);
         novaRSMeniDugme.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controller.dodajRadnuStanicu();
+                DodajRadnuStanicuWindow dialog = new DodajRadnuStanicuWindow(model);
+                dialog.setVisible(true);
             }
         });
 
@@ -40,7 +36,8 @@ public class CentralWorkerWindow extends JFrame{
         novaDeonicaMeniDugme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.dodajDeonicu();
+                DodajDeonicuWindow dialog = new DodajDeonicuWindow(model);
+                dialog.setVisible(true);
             }
         });
 
@@ -49,7 +46,8 @@ public class CentralWorkerWindow extends JFrame{
         noviKorisnikMeniDugme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.dodajKorisnika();
+                DodajKorisnikaWindow dialog = new DodajKorisnikaWindow(model);
+                dialog.setVisible(true);
             }
         });
 
@@ -58,7 +56,8 @@ public class CentralWorkerWindow extends JFrame{
         JButton novaRSDugme = new JButton("Nova radna stanica");
         novaRSDugme.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controller.dodajRadnuStanicu();
+                DodajRadnuStanicuWindow dialog = new DodajRadnuStanicuWindow(model);
+                dialog.setVisible(true);
             }
         });
 
@@ -66,7 +65,8 @@ public class CentralWorkerWindow extends JFrame{
         novaDeonicaDugme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.dodajDeonicu();
+                DodajDeonicuWindow dialog = new DodajDeonicuWindow(model);
+                dialog.setVisible(true);
             }
         });
 
@@ -74,7 +74,8 @@ public class CentralWorkerWindow extends JFrame{
         noviKorisnikDugme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.dodajKorisnika();
+                DodajKorisnikaWindow dialog = new DodajKorisnikaWindow(model);
+                dialog.setVisible(true);
             }
         });
 

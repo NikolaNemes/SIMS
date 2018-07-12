@@ -17,6 +17,7 @@ public class Deonica {
         this.dolaznaStanica = dolaznaStanica;
         this.id = id;
         this.trenutneCene = null;
+        this.naplatneCene = new ArrayList<NaplatneCene>();
     }
 
     public NaplatneCene pronadjiNaplatneCene(String id) {
@@ -87,5 +88,9 @@ public class Deonica {
 
     public void setTrenutneCene(NaplatneCene trenutneCene) {
         this.trenutneCene = trenutneCene;
+    }
+
+    public ArrayList<NaplatneCene> getNaplatneCene() {
+        return naplatneCene;
     }
 }

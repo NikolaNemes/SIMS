@@ -1,5 +1,4 @@
 import UI.FajlMenadzer;
-import controller.CentralWorkerActions;
 import controller.LoginActions;
 import model.Centrala;
 import model.RadnaStanica;
@@ -15,12 +14,7 @@ public class Application {
         */
         Centrala centrala = new Centrala();
         FajlMenadzer.ucitajKorisnike("korisnici.txt", centrala);
-        centrala.dodajRadnuStanicu(new RadnaStanica("NS", "1"));
-        centrala.dodajRadnuStanicu(new RadnaStanica("BG", "2"));
-        centrala.dodajRadnuStanicu(new RadnaStanica("LZN", "3"));
         CentralWorkerWindow cww = new CentralWorkerWindow(centrala);
-        CentralWorkerActions cwa = new CentralWorkerActions(centrala);
-        cww.setController(cwa);
         cww.setVisible(true);
     }
 }

@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="miglayout-4.0" level="project" />
     <orderEntry type="library" name="miglayout-3.5.5" level="project" />
+    <orderEntry type="library" name="swingx-1.6.11" level="project" />
   </component>
 </module>
