@@ -10,8 +10,6 @@ public class Centrala {
     private ArrayList<RadnaStanica> radneStanice;
     private String naziv;
 
-
-
     public Centrala() {
         this.korisnici = new ArrayList<Korisnik>();
         this.deonice = new ArrayList<Deonica>();
@@ -39,22 +37,39 @@ public class Centrala {
         return false;
     }
 
-    public void izbrisiRadnuStanicu(RadnaStanica radnaStanica) {
+    public void izbrisiRadnuStanicu(String id) {
         for (RadnaStanica i : this.radneStanice) {
-            if (i.equals(radnaStanica)) {
+            if (i.getId().equals(id)) {
                 i.setAktivna(false);
                 break;
             }
         }
     }
 
-    public void dodajDeonicu(Deonica deonica) {
-        this.deonice.add(deonica);
+    public Deonica pronadjiDeonicu(String id) {
+        Deonica retVal = null;
+        for (Deonica i : this.deonice) {
+            if (i.getId().equals(id)) {
+                retVal = i;
+                break;
+            }
+        }
+        return retVal;
     }
 
-    public void izbrisiDeonicu(Deonica deonica) {
+    public boolean dodajDeonicu(Deonica deonica) {
+        Deonica temp = null;
+        temp = pronadjiDeonicu(deonica.getId());
+        if (temp == null) {
+            this.deonice.add(deonica);
+            return true;
+        }
+        return false;
+    }
+
+    public void izbrisiDeonicu(String id) {
         for (Deonica i : this.deonice) {
-            if (i.equals(deonica)) {
+            if (i.getId().equals(id)) {
                 i.setAktivna(false);
                 break;
             }
@@ -81,9 +96,9 @@ public class Centrala {
         return false;
     }
 
-    public void izbrisiKorisnika(Korisnik korisnik) {
+    public void izbrisiKorisnika(String id) {
         for (Korisnik i : this.korisnici) {
-            if (i.equals(korisnik)) {
+            if (i.getId().equals(id)) {
                 i.setAktivan(false);
                 break;
             }
@@ -105,7 +120,4 @@ public class Centrala {
     public void izvestajNovcaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
 
     }
-
-
-
 }
