@@ -38,13 +38,30 @@ public class NaplatnoMesto {
         return false;
     }
 
-    public void dodajUredjaj(Uredjaj uredjaj) {
-        this.uredjaji.add(uredjaj);
+    public Uredjaj pronadjiUredjaj(String id) {
+        Uredjaj retVal = null;
+        for (Uredjaj i : this.uredjaji) {
+            if (i.getId().equals(id)) {
+                retVal = i;
+                break;
+            }
+        }
+        return retVal;
     }
 
-    public void ukloniUredjaj(Uredjaj uredjaj) {
+    public boolean dodajUredjaj(Uredjaj uredjaj) {
+        Uredjaj temp = null;
+        temp = pronadjiUredjaj(uredjaj.getId());
+        if (temp == null) {
+            this.uredjaji.add(uredjaj);
+            return true;
+        }
+        return false;
+    }
+
+    public void ukloniUredjaj(String id) {
         for (Uredjaj i : this.uredjaji) {
-            if (i.equals(uredjaj)) {
+            if (i.getId().equals(id)) {
                 i.setAktivan(false);
                 break;
             }
