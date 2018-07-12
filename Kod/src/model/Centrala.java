@@ -16,11 +16,11 @@ public class Centrala {
         this.radneStanice = new ArrayList<RadnaStanica>();
     }
 
-    void dodajRadnuStanicu(RadnaStanica radnaStanica) {
+    public void dodajRadnuStanicu(RadnaStanica radnaStanica) {
         this.radneStanice.add(radnaStanica);
     }
 
-    void izbrisiRadnuStanicu(RadnaStanica radnaStanica) {
+    public void izbrisiRadnuStanicu(RadnaStanica radnaStanica) {
         for (RadnaStanica i : this.radneStanice) {
             if (i.equals(radnaStanica)) {
                 i.setAktivna(false);
@@ -29,11 +29,11 @@ public class Centrala {
         }
     }
 
-    void dodajDeonicu(Deonica deonica) {
+    public void dodajDeonicu(Deonica deonica) {
         this.deonice.add(deonica);
     }
 
-    void izbrisiDeonicu(Deonica deonica) {
+    public void izbrisiDeonicu(Deonica deonica) {
         for (Deonica i : this.deonice) {
             if (i.equals(deonica)) {
                 i.setAktivna(false);
@@ -42,11 +42,11 @@ public class Centrala {
         }
     }
 
-    void dodajKorisnika(Korisnik korisnik) {
+    public void dodajKorisnika(Korisnik korisnik) {
         this.korisnici.add(korisnik);
     }
 
-    void izbrisiKorisnika(Korisnik korisnik) {
+    public void izbrisiKorisnika(Korisnik korisnik) {
         for (Korisnik i : this.korisnici) {
             if (i.equals(korisnik)) {
                 i.setAktivan(false);
@@ -55,19 +55,19 @@ public class Centrala {
         }
     }
 
-    void izvestajBrojVozila(Date pocetak, Date kraj) {
+    public void izvestajBrojVozila(Date pocetak, Date kraj) {
 
     }
 
-    void izvestajIznosNovca(Date pocetak, Date kraj) {
+    public void izvestajIznosNovca(Date pocetak, Date kraj) {
 
     }
 
-    void izvestajBrojVozilaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
+    public void izvestajBrojVozilaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
 
     }
 
-    void izvestajNovcaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
+    public void izvestajNovcaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
 
     }
 
