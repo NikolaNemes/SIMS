@@ -9,6 +9,7 @@ public class FajlMenadzer {
 
     public static void ucitajKorisnike(String korisnickiFajl) {
         BufferedReader bf = null;
+        String linija = null;
         try {
             bf = new BufferedReader(new FileReader(korisnickiFajl));
             while ((linija = bf.readLine()) != null) {

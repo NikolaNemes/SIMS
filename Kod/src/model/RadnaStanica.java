@@ -10,13 +10,15 @@ public class RadnaStanica {
     private ArrayList<NaplatnoMesto> naplatnaMesta;
     private ArrayList<Kvar> kvarovi;
     private ArrayList<Deonica> deonice;
+    private String id;
 
-    public RadnaStanica(String mesto) {
+    public RadnaStanica(String mesto, String id) {
         this.mesto = mesto;
         this.aktivna = false;
         this.prolasci = new ArrayList<ProlazakVozila>();
         this.naplatnaMesta = new ArrayList<NaplatnoMesto>();
         this.deonice = new ArrayList<Deonica>();
+        this.id = id;
     }
 
     public void dodajNaplatnoMesto(NaplatnoMesto naplatnoMesto) {
@@ -90,5 +92,13 @@ public class RadnaStanica {
 
     public void setDeonice(ArrayList<Deonica> deonice) {
         this.deonice = deonice;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
