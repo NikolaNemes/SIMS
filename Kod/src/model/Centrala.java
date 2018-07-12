@@ -71,6 +71,13 @@ public class Centrala {
 
     }
 
-
+    public Korisnik pronadjiKorisnika(String username, String password){
+        for (Korisnik k : korisnici){
+            if (k.getKorisnickoIme().equalsIgnoreCase(username) && k.getLozinka().equals(password)){
+                return k;
+            }
+        }
+        return null;
+    }
 
 }
