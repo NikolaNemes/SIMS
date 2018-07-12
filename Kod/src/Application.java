@@ -13,6 +13,7 @@ public class Application {
         lw.setVisible(true);
         */
         Centrala centrala = new Centrala();
+        centrala = FajlMenadzer.ucitajKorisnike("korisnici.txt", centrala);
         FajlMenadzer.ucitajKorisnike("korisnici.txt", centrala);
         CentralWorkerWindow cww = new CentralWorkerWindow(centrala);
         cww.setVisible(true);

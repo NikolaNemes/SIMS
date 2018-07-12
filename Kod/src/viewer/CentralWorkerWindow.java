@@ -1,6 +1,7 @@
 package viewer;
 
 
+import UI.FajlMenadzer;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.swingx.JXDatePicker;
 import model.Centrala;
@@ -20,6 +21,8 @@ public class CentralWorkerWindow extends JFrame{
         JMenu novoMeni = new JMenu("Novo");
         JMenu izmeniMeni = new JMenu("Izmeni");
         JMenu izvestajMeni = new JMenu("Izvestaj");
+        JMenu fajlMeni = new JMenu("Fajl");
+        meniTraka.add(fajlMeni);
         meniTraka.add(novoMeni);
         meniTraka.add(izmeniMeni);
         meniTraka.add(izvestajMeni);
@@ -63,6 +66,15 @@ public class CentralWorkerWindow extends JFrame{
             }
         });
 
+        JMenuItem snimiMeniDugme = new JMenuItem("Snimi");
+        fajlMeni.add(snimiMeniDugme);
+        snimiMeniDugme.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FajlMenadzer.snimiKorisnike("korisnici.txt", model);
+            }
+        });
+
         add(meniTraka, "wrap");
 
         JButton novaRSDugme = new JButton("Nova radna stanica");
@@ -91,9 +103,19 @@ public class CentralWorkerWindow extends JFrame{
             }
         });
 
-        add(novaRSDugme);
+        JButton izmeniDeonicuDugme = new JButton("Izmeni deonicu");
+        izmeniDeonicuDugme.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IzmeniDeonicuWindow dialog = new IzmeniDeonicuWindow(model);
+                dialog.setVisible(true);
+            }
+        });
+
+        add(novaRSDugme, "split 2");
         add(novaDeonicaDugme);
-        add(noviKorisnikDugme, "wrap");
+        add(noviKorisnikDugme);
+        add(izmeniDeonicuDugme, "wrap");
 
     }
 }
