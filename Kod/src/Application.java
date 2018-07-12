@@ -1,5 +1,7 @@
 import controller.CentralWorkerActions;
 import controller.LoginActions;
+import model.Centrala;
+import model.RadnaStanica;
 import viewer.CentralWorkerWindow;
 import viewer.LoginWindow;
 
@@ -10,8 +12,13 @@ public class Application {
         lw.setController(la);
         lw.setVisible(true);
         */
+        Centrala centrala = new Centrala();
+        centrala.dodajRadnuStanicu(new RadnaStanica("NS", "1"));
+        centrala.dodajRadnuStanicu(new RadnaStanica("BG", "2"));
+        centrala.dodajRadnuStanicu(new RadnaStanica("LZN", "3"));
         CentralWorkerWindow cww = new CentralWorkerWindow();
         CentralWorkerActions cwa = new CentralWorkerActions();
+        cww.setModel(centrala);
         cww.setController(cwa);
         cww.setVisible(true);
     }
