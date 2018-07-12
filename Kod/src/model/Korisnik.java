@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Korisnik {
+public class Korisnik implements Serializable {
 
     private TipKorisnika tip;
     private String korisnickoIme;
@@ -20,6 +21,13 @@ public class Korisnik {
         this.prezime = prezime;
         this.aktivan = true;
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        String retVal = this.tip + "\\|" + this.korisnickoIme + "\\|" + this.lozinka +
+                "\\|" + this.ime + "\\|" + this.prezime + "\\|" + this.id;
+        return retVal;
     }
 
     @Override

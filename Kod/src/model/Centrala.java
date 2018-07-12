@@ -132,4 +132,8 @@ public class Centrala {
     public ArrayList<RadnaStanica> getRadneStanice() {
         return radneStanice;
     }
+
+    public void setKorisnici(ArrayList<Korisnik> korisnici) {
+        this.korisnici = korisnici;
+    }
 }
