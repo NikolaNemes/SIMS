@@ -9,7 +9,8 @@ public enum TipKorisnika {
         this.opis = opis;
     }
 
-    public String getOpis() {
+    @Override
+    public String toString() {
         return this.opis;
     }
 }
