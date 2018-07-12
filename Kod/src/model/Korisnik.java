@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Korisnik {
 
     private TipKorisnika tip;
@@ -8,14 +10,30 @@ public class Korisnik {
     private String ime;
     private String prezime;
     private boolean aktivan;
+    private String id;
 
-    public Korisnik(TipKorisnika tip, String korisnickoIme, String lozinka, String ime, String prezime) {
+    public Korisnik(TipKorisnika tip, String korisnickoIme, String lozinka, String ime, String prezime, String id) {
         this.tip = tip;
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
         this.ime = ime;
         this.prezime = prezime;
         this.aktivan = true;
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Korisnik korisnik = (Korisnik) o;
+        return Objects.equals(id, korisnik.id);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
     }
 
     public TipKorisnika getTip() {
@@ -64,5 +82,13 @@ public class Korisnik {
 
     public void setAktivan(boolean aktivan) {
         this.aktivan = aktivan;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

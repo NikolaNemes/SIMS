@@ -16,68 +16,108 @@ public class Centrala {
         this.radneStanice = new ArrayList<RadnaStanica>();
     }
 
-    void dodajRadnuStanicu(RadnaStanica radnaStanica) {
-        this.radneStanice.add(radnaStanica);
-    }
-
-    void izbrisiRadnuStanicu(RadnaStanica radnaStanica) {
+    public RadnaStanica pronadjiRadnuStanicu(String id) {
+        RadnaStanica retVal = null;
         for (RadnaStanica i : this.radneStanice) {
-            if (i.equals(radnaStanica)) {
+            if (i.getId().equals(id)) {
+                retVal = i;
+                break;
+            }
+        }
+        return retVal;
+    }
+
+    public boolean dodajRadnuStanicu(RadnaStanica radnaStanica) {
+        RadnaStanica temp = null;
+        temp = pronadjiRadnuStanicu(radnaStanica.getId());
+        if (temp == null) {
+            this.radneStanice.add(radnaStanica);
+            return true;
+        }
+        return false;
+    }
+
+    public void izbrisiRadnuStanicu(String id) {
+        for (RadnaStanica i : this.radneStanice) {
+            if (i.getId().equals(id)) {
                 i.setAktivna(false);
                 break;
             }
         }
     }
 
-    void dodajDeonicu(Deonica deonica) {
-        this.deonice.add(deonica);
-    }
-
-    void izbrisiDeonicu(Deonica deonica) {
+    public Deonica pronadjiDeonicu(String id) {
+        Deonica retVal = null;
         for (Deonica i : this.deonice) {
-            if (i.equals(deonica)) {
+            if (i.getId().equals(id)) {
+                retVal = i;
+                break;
+            }
+        }
+        return retVal;
+    }
+
+    public boolean dodajDeonicu(Deonica deonica) {
+        Deonica temp = null;
+        temp = pronadjiDeonicu(deonica.getId());
+        if (temp == null) {
+            this.deonice.add(deonica);
+            return true;
+        }
+        return false;
+    }
+
+    public void izbrisiDeonicu(String id) {
+        for (Deonica i : this.deonice) {
+            if (i.getId().equals(id)) {
                 i.setAktivna(false);
                 break;
             }
         }
     }
 
-    void dodajKorisnika(Korisnik korisnik) {
-        this.korisnici.add(korisnik);
+    public Korisnik pronadjiKorisnika(String id) {
+        Korisnik retVal = null;
+        for (Korisnik i : this.korisnici) {
+            if (i.getId().equals(id)) {
+                retVal = i;
+                break;
+            }
+        }
+        return retVal;
     }
 
-    void izbrisiKorisnika(Korisnik korisnik) {
+    public boolean dodajKorisnika(Korisnik korisnik) {
+        Korisnik temp = pronadjiKorisnika(korisnik.getId());
+        if (temp == null) {
+            this.korisnici.add(korisnik);
+            return true;
+        }
+        return false;
+    }
+
+    public void izbrisiKorisnika(String id) {
         for (Korisnik i : this.korisnici) {
-            if (i.equals(korisnik)) {
+            if (i.getId().equals(id)) {
                 i.setAktivan(false);
                 break;
             }
         }
     }
 
-    void izvestajBrojVozila(Date pocetak, Date kraj) {
+    public void izvestajBrojVozila(Date pocetak, Date kraj) {
 
     }
 
-    void izvestajIznosNovca(Date pocetak, Date kraj) {
+    public void izvestajIznosNovca(Date pocetak, Date kraj) {
 
     }
 
-    void izvestajBrojVozilaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
+    public void izvestajBrojVozilaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
 
     }
 
-    void izvestajNovcaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
+    public void izvestajNovcaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
 
     }
-
-    public Korisnik pronadjiKorisnika(String username, String password){
-        for (Korisnik k : korisnici){
-            if (k.getKorisnickoIme().equalsIgnoreCase(username) && k.getLozinka().equals(password)){
-                return k;
-            }
-        }
-        return null;
-    }
-
 }

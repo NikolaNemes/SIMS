@@ -10,30 +10,66 @@ public class RadnaStanica {
     private ArrayList<NaplatnoMesto> naplatnaMesta;
     private ArrayList<Kvar> kvarovi;
     private ArrayList<Deonica> deonice;
+    private String id;
 
-    public RadnaStanica(String mesto) {
+    public RadnaStanica(String mesto, String id) {
         this.mesto = mesto;
         this.aktivna = false;
         this.prolasci = new ArrayList<ProlazakVozila>();
         this.naplatnaMesta = new ArrayList<NaplatnoMesto>();
         this.deonice = new ArrayList<Deonica>();
+        this.id = id;
     }
 
-    public void dodajNaplatnoMesto(NaplatnoMesto naplatnoMesto) {
-        this.naplatnaMesta.add(naplatnoMesto);
+    public NaplatnoMesto pronadjiNaplatnoMesto(String id) {
+        NaplatnoMesto retVal = null;
+        for (NaplatnoMesto i : this.naplatnaMesta) {
+            if (i.getId().equals(id)) {
+                retVal = i;
+                break;
+            }
+        }
+        return retVal;
     }
 
-    public void izbrisiNaplatnoMesto(NaplatnoMesto naplatnoMesto) {
+    public boolean dodajNaplatnoMesto(NaplatnoMesto naplatnoMesto) {
+        NaplatnoMesto temp = null;
+        temp = pronadjiNaplatnoMesto(naplatnoMesto.getId());
+        if (temp == null) {
+            this.naplatnaMesta.add(naplatnoMesto);
+            return true;
+        }
+        return false;
+    }
+
+    public void izbrisiNaplatnoMesto(String id) {
         for (NaplatnoMesto i : naplatnaMesta) {
-            if (i.equals(naplatnoMesto)) {
+            if (i.getId().equals(id)) {
                 i.setAktivno(false);
                 break;
             }
         }
     }
 
-    public void dodajKvar(Kvar kvar) {
-        this.kvarovi.add(kvar);
+    public Kvar pronadjiKvar(String id) {
+        Kvar retVal = null;
+        for (Kvar i : this.kvarovi) {
+            if (i.getId().equals(id)) {
+                retVal = i;
+                break;
+            }
+        }
+        return retVal;
+    }
+
+    public boolean dodajKvar(Kvar kvar) {
+        Kvar temp = null;
+        temp = pronadjiKvar(kvar.getId());
+        if (temp == null) {
+            this.kvarovi.add(kvar);
+            return true;
+        }
+        return false;
     }
 
     public void izbrisiKvar(Kvar kvar) {
@@ -55,10 +91,40 @@ public class RadnaStanica {
         }
         return retVal;
     }
+    public Deonica pronadjeDeonicu(String id) {
+        Deonica retVal = null;
+        for (Deonica i : deonice) {
+            if (i.getId().equals(id)) {
 
-    public void dodajProlazakVozila(ProlazakVozila prolazakVozila) {
-        this.prolasci.add(prolazakVozila);
+                break;
+            }
+        }
+        return retVal;
     }
+
+
+    public ProlazakVozila pronadjiProlazakVozila(String id) {
+        ProlazakVozila retVal = null;
+        for (ProlazakVozila i : this.prolasci) {
+            if (i.getId().equals(id)) {
+                retVal = i;
+                break;
+            }
+        }
+        return retVal;
+    }
+
+    public boolean dodajProlazakVozila(ProlazakVozila prolazakVozila) {
+        ProlazakVozila temp = null;
+        temp = pronadjiProlazakVozila(prolazakVozila.getId());
+        if (temp == null) {
+            this.prolasci.add(prolazakVozila);
+            return true;
+        }
+        return false;
+    }
+
+
 
     public String getMesto() {
         return mesto;
@@ -76,19 +142,15 @@ public class RadnaStanica {
         this.aktivna = aktivna;
     }
 
-    public ArrayList<ProlazakVozila> getProlasci() {
-        return prolasci;
-    }
-
-    public void setProlasci(ArrayList<ProlazakVozila> prolasci) {
-        this.prolasci = prolasci;
-    }
-
-    public ArrayList<Deonica> getDeonice() {
-        return deonice;
-    }
-
     public void setDeonice(ArrayList<Deonica> deonice) {
         this.deonice = deonice;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

@@ -4,13 +4,15 @@ import java.util.ArrayList;
 
 public class NaplatnoMesto {
 
+    private String id;
     private boolean aktivno;
     private RadnaStanica radnaStanica;
     private ArrayList<Uredjaj> uredjaji;
 
-    public NaplatnoMesto() {
+    public NaplatnoMesto(String id) {
         this.aktivno = true;
         this.uredjaji = new ArrayList<Uredjaj>();
+        this.id = id;
     }
 
     public void naplataRucna(DolazakVozila dolazakVozila) {
@@ -82,5 +84,13 @@ public class NaplatnoMesto {
 
     public void setUredjaji(ArrayList<Uredjaj> uredjaji) {
         this.uredjaji = uredjaji;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
