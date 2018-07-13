@@ -149,7 +149,7 @@ public class RadnaStanica {
     public Pair<ArrayList<ProlazakVozila>, Integer> izvestajBrojVozila(Date pocetak, Date kraj) {
            ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<ProlazakVozila>();
            for (ProlazakVozila pv: this.prolasci) {
-                if (pv.getVreme().compareTo(pocetak) > 0 && pv.getVreme().compareTo(kraj) < 0) {
+                if (pv.getVreme().compareTo(pocetak) >= 0 && pv.getVreme().compareTo(kraj) <= 0) {
                     potrebniProlasci.add(pv);
                 }
            }
@@ -160,7 +160,7 @@ public class RadnaStanica {
         ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<ProlazakVozila>();
         int ukupanIznos = 0;
         for (ProlazakVozila pv: this.prolasci) {
-            if (pv.getVreme().compareTo(pocetak) > 0 && pv.getVreme().compareTo(kraj) < 0) {
+            if (pv.getVreme().compareTo(pocetak) >= 0 && pv.getVreme().compareTo(kraj) <= 0) {
                 potrebniProlasci.add(pv);
                 ukupanIznos += pv.getCena();
             }
@@ -172,7 +172,7 @@ public class RadnaStanica {
     public Pair<ArrayList<ProlazakVozila>, Integer> izvestajBrojVozilaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
         ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<>();
         for (ProlazakVozila pv: this.prolasci) {
-            if (pv.getVreme().compareTo(pocetak) > 0 && pv.getVreme().compareTo(kraj) <0 && kategorija.equals(pv.getKategorija())) {
+            if (pv.getVreme().compareTo(pocetak) >= 0 && pv.getVreme().compareTo(kraj) <= 0 && kategorija.equals(pv.getKategorija())) {
                 potrebniProlasci.add(pv);
             }
         }
@@ -183,7 +183,7 @@ public class RadnaStanica {
         ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<>();
         int ukupanIznos = 0;
         for (ProlazakVozila pv: this.prolasci) {
-            if (pv.getVreme().compareTo(pocetak) > 0 && pv.getVreme().compareTo(kraj) <0 && kategorija.equals(pv.getKategorija())) {
+            if (pv.getVreme().compareTo(pocetak) >= 0 && pv.getVreme().compareTo(kraj) <= 0 && kategorija.equals(pv.getKategorija())) {
                 potrebniProlasci.add(pv);
                 ukupanIznos += pv.getCena();
             }
