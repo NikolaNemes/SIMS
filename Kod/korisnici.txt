@@ -1,5 +1,0 @@
-<model.Centrala>
-  <korisnici/>
-  <deonice/>
-  <radneStanice/>
-</model.Centrala>
