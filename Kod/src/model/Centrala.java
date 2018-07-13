@@ -139,7 +139,7 @@ public class Centrala {
         return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, potrebniProlasci.size());
     }
 
-    public Pair<ArrayList<ProlazakVozila> izvestajNovcaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
+    public Pair<ArrayList<ProlazakVozila>, Integer> izvestajNovcaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
         ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<ProlazakVozila>();
         this.radneStanice.sort(new RadnaStanicaComp());
         int ukupanIznos = 0;
