@@ -18,7 +18,7 @@ public class RadnaStanica implements Model{
 
     public RadnaStanica(String mesto, String id) {
         this.mesto = mesto;
-        this.aktivna = false;
+        this.aktivna = true;
         this.prolasci = new ArrayList<ProlazakVozila>();
         this.naplatnaMesta = new ArrayList<NaplatnoMesto>();
         this.kvarovi = new ArrayList<Kvar>();
@@ -29,7 +29,7 @@ public class RadnaStanica implements Model{
     public NaplatnoMesto pronadjiNaplatnoMesto(String id) {
         NaplatnoMesto retVal = null;
         for (NaplatnoMesto i : this.naplatnaMesta) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivno()) {
                 retVal = i;
                 break;
             }
@@ -49,7 +49,7 @@ public class RadnaStanica implements Model{
 
     public void izbrisiNaplatnoMesto(String id) {
         for (NaplatnoMesto i : naplatnaMesta) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivno()) {
                 i.setAktivno(false);
                 break;
             }
@@ -59,7 +59,7 @@ public class RadnaStanica implements Model{
     public Kvar pronadjiKvar(String id) {
         Kvar retVal = null;
         for (Kvar i : this.kvarovi) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivan()) {
                 retVal = i;
                 break;
             }
@@ -79,7 +79,7 @@ public class RadnaStanica implements Model{
 
     public void izbrisiKvar(Kvar kvar) {
         for (Kvar i : this.kvarovi) {
-            if (i.equals(kvar)) {
+            if (i.equals(kvar) && i.isAktivan()) {
                 i.setAktivan(false);
                 break;
             }
@@ -89,7 +89,7 @@ public class RadnaStanica implements Model{
     public Deonica pronadjiDeonicu(RadnaStanica polaznaStanica) {
         Deonica retVal = null;
         for (Deonica i : this.deonice) {
-            if (i.getPolaznaStanica().equals(polaznaStanica)) {
+            if (i.getPolaznaStanica().equals(polaznaStanica) && i.isAktivna()) {
                 retVal = i;
                 break;
             }
@@ -99,8 +99,8 @@ public class RadnaStanica implements Model{
     public Deonica pronadjiDeonicu(String id) {
         Deonica retVal = null;
         for (Deonica i : deonice) {
-            if (i.getId().equals(id)) {
-
+            if (i.getId().equals(id) && i.isAktivna()) {
+                retVal = i;
                 break;
             }
         }
@@ -119,7 +119,7 @@ public class RadnaStanica implements Model{
 
     public void izbrisiDeonicu(String id) {
         for (Deonica i : this.deonice) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivna()) {
                 i.setAktivna(false);
             }
             break;

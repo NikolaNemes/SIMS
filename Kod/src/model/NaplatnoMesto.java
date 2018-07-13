@@ -41,7 +41,7 @@ public class NaplatnoMesto {
     public Uredjaj pronadjiUredjaj(String id) {
         Uredjaj retVal = null;
         for (Uredjaj i : this.uredjaji) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivan()) {
                 retVal = i;
                 break;
             }
@@ -61,7 +61,7 @@ public class NaplatnoMesto {
 
     public void ukloniUredjaj(String id) {
         for (Uredjaj i : this.uredjaji) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivan()) {
                 i.setAktivan(false);
                 break;
             }

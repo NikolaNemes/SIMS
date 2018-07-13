@@ -78,9 +78,11 @@ public class Application {
         deonice.add(noviSadVrbas);
         deonice.add(noviSadNis);
         deonice.add(noviSadValjevo);
+
         deonice.add(nisVrbas);
         deonice.add(nisNoviSad);
         deonice.add(nisValjevo);
+
         deonice.add(valjevoVrbas);
         deonice.add(valjevoNoviSad);
         deonice.add(valjevoNis);

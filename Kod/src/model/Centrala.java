@@ -21,7 +21,7 @@ public class Centrala implements Model{
     public RadnaStanica pronadjiRadnuStanicu(String id) {
         RadnaStanica retVal = null;
         for (RadnaStanica i : this.radneStanice) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivna()) {
                 retVal = i;
                 break;
             }
@@ -41,7 +41,7 @@ public class Centrala implements Model{
 
     public void izbrisiRadnuStanicu(String id) {
         for (RadnaStanica i : this.radneStanice) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivna()) {
                 i.setAktivna(false);
                 break;
             }
@@ -51,7 +51,7 @@ public class Centrala implements Model{
     public Deonica pronadjiDeonicu(String id) {
         Deonica retVal = null;
         for (Deonica i : this.deonice) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivna()) {
                 retVal = i;
                 break;
             }
@@ -71,7 +71,7 @@ public class Centrala implements Model{
 
     public void izbrisiDeonicu(String id) {
         for (Deonica i : this.deonice) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivna()) {
                 i.setAktivna(false);
                 break;
             }
@@ -81,7 +81,7 @@ public class Centrala implements Model{
     public Korisnik pronadjiKorisnika(String id) {
         Korisnik retVal = null;
         for (Korisnik i : this.korisnici) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivan()) {
                 retVal = i;
                 break;
             }
@@ -100,7 +100,7 @@ public class Centrala implements Model{
 
     public void izbrisiKorisnika(String id) {
         for (Korisnik i : this.korisnici) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivan()) {
                 i.setAktivan(false);
                 break;
             }
