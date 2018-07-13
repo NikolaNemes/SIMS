@@ -2,6 +2,7 @@ package viewer;
 
 
 import UI.FajlMenadzer;
+import model.TipIzvestaja;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.swingx.JXDatePicker;
 import model.Centrala;
@@ -119,15 +120,17 @@ public class CentralWorkerWindow extends JFrame{
         brSvihVozilaMeniDugme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                IzvestajSvaVozilaWindow dialog = new IzvestajSvaVozilaWindow(model, TipIzvestaja.BROJ_VOZILA);
+                dialog.setVisible(true);
             }
         });
 
         JButton brSvihVozilaDugme = new JButton("Broj svih vozila");
-        brSvihVozilaMeniDugme.addActionListener(new ActionListener() {
+        brSvihVozilaDugme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                IzvestajSvaVozilaWindow dialog = new IzvestajSvaVozilaWindow(model, TipIzvestaja.BROJ_VOZILA);
+                dialog.setVisible(true);
             }
         });
 
@@ -136,15 +139,17 @@ public class CentralWorkerWindow extends JFrame{
         brKatVozilaMeniDugme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                IzvestajKatVozilaWindow dialog = new IzvestajKatVozilaWindow(model, TipIzvestaja.BROJ_VOZILA);
+                dialog.setVisible(true);
             }
         });
 
-        JButton brKatVozilaDugme = new JButton("Broj vozila odredjene vrste");
+        JButton brKatVozilaDugme = new JButton("Broj vozila odredjene kategorije");
         brKatVozilaDugme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                IzvestajKatVozilaWindow dialog = new IzvestajKatVozilaWindow(model, TipIzvestaja.BROJ_VOZILA);
+                dialog.setVisible(true);
             }
         });
 
@@ -156,7 +161,8 @@ public class CentralWorkerWindow extends JFrame{
         zaradaSvihVozilaMeniDugme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                IzvestajSvaVozilaWindow dialog = new IzvestajSvaVozilaWindow(model, TipIzvestaja.ZARADA);
+                dialog.setVisible(true);
             }
         });
 
@@ -164,7 +170,8 @@ public class CentralWorkerWindow extends JFrame{
         zaradaSvihVozilaDugme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                IzvestajSvaVozilaWindow dialog = new IzvestajSvaVozilaWindow(model, TipIzvestaja.ZARADA);
+                dialog.setVisible(true);
             }
         });
 
@@ -173,15 +180,17 @@ public class CentralWorkerWindow extends JFrame{
         zaradaKatVozilaMeniDugme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                IzvestajKatVozilaWindow dialog = new IzvestajKatVozilaWindow(model, TipIzvestaja.ZARADA);
+                dialog.setVisible(true);
             }
         });
 
-        JButton zaradaKatVozilaDugme = new JButton("Zarada od vozila odredjene vrste");
+        JButton zaradaKatVozilaDugme = new JButton("Zarada od vozila odredjene kategorije");
         zaradaKatVozilaDugme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                IzvestajKatVozilaWindow dialog = new IzvestajKatVozilaWindow(model, TipIzvestaja.ZARADA);
+                dialog.setVisible(true);
             }
         });
 
