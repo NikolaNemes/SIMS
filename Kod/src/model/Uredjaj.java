@@ -2,13 +2,13 @@ package model;
 
 public abstract class Uredjaj {
 
-    private TipUredjaja tipUredjaja;
-    private boolean aktivan;
-    private String id;
+    protected TipUredjaja tipUredjaja;
+    protected boolean aktivan;
+    protected String id;
 
     public TipUredjaja getTipUredjaja() {
         return tipUredjaja;
-    };
+    }
 
     public void setTipUredjaja(TipUredjaja tipUredjaja) {
         this.tipUredjaja = tipUredjaja;

@@ -14,6 +14,7 @@ public class RadnaStanica {
     private ArrayList<Kvar> kvarovi;
     private ArrayList<Deonica> deonice;
     private String id;
+    private int brUredjaja = 0;
 
     public RadnaStanica(String mesto, String id) {
         this.mesto = mesto;
@@ -191,6 +192,22 @@ public class RadnaStanica {
         return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, ukupanIznos);
     }
 
+    public ArrayList<ProlazakVozila> getProlasci() {
+        return prolasci;
+    }
+
+    public ArrayList<NaplatnoMesto> getNaplatnaMesta() {
+        return naplatnaMesta;
+    }
+
+    public ArrayList<Kvar> getKvarovi() {
+        return kvarovi;
+    }
+
+    public ArrayList<Deonica> getDeonice() {
+        return deonice;
+    }
+
     @Override
     public String toString() {
         return mesto;
@@ -222,5 +239,13 @@ public class RadnaStanica {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getBrUredjaja() {
+        return brUredjaja;
+    }
+
+    public void setBrUredjaja(int brUredjaja) {
+        this.brUredjaja = brUredjaja;
     }
 }

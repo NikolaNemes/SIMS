@@ -8,6 +8,12 @@ public class KontrolerRampe extends Uredjaj {
         trenutno = null;
     }
 
+    public KontrolerRampe(String id) {
+        this.tipUredjaja = TipUredjaja.KONTOLER_RAMPE;
+        this.id = id;
+        trenutno = null;
+    };
+
     public void iskljuciMotor() {
 
     }
