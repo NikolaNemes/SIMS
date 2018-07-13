@@ -9,6 +9,7 @@ import net.miginfocom.swing.MigLayout;
 import org.jdesktop.swingx.JXDatePicker;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -64,6 +65,7 @@ public class IzvestajSvaVozilaWindow extends JFrame {
                 }
 
                 JTable prolasciTabela = new JTable(podaci, kolone);
+                prolasciTabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                 JScrollPane pane = new JScrollPane(prolasciTabela);
                 sumaLabela.setText(sumaLabela.getText() + String.valueOf(izvestaj.getValue()));
                 add(prolasciLabela, "wrap");
