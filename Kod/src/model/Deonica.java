@@ -23,7 +23,7 @@ public class Deonica {
     public NaplatneCene pronadjiNaplatneCene(String id) {
         NaplatneCene retVal = null;
         for (NaplatneCene i : this.naplatneCene) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivne()) {
                 retVal = i;
                 break;
             }
@@ -44,7 +44,8 @@ public class Deonica {
 
     public void izbrisiNaplatneCene(String id) {
         for (NaplatneCene i : this.naplatneCene) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivne()) {
+                i.setAktivne(false);
                 break;
             }
         }
