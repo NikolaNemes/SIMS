@@ -5,6 +5,7 @@ import viewer.CentralWorkerWindow;
 import viewer.LoginWindow;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -16,7 +17,7 @@ public class Application {
         lw.setVisible(true);
         */
         Centrala centrala = new Centrala();
-        centrala = FajlMenadzer.ucitajKorisnike("korisnici.txt", centrala);
+        //centrala = FajlMenadzer.ucitajKorisnike("korisnici.txt", centrala);
 
         ArrayList<RadnaStanica> radneStanice = centrala.getRadneStanice();
 
@@ -36,9 +37,9 @@ public class Application {
 
         HashMap<KategorijaVozila, Integer> ceneMapa = new HashMap<KategorijaVozila, Integer>();
         ceneMapa.put(KategorijaVozila.A, 100);
-        ceneMapa.put(KategorijaVozila.B, 100);
-        ceneMapa.put(KategorijaVozila.C, 100);
-        ceneMapa.put(KategorijaVozila.D, 100);
+        ceneMapa.put(KategorijaVozila.B, 200);
+        ceneMapa.put(KategorijaVozila.C, 300);
+        ceneMapa.put(KategorijaVozila.D, 400);
         NaplatneCene cene = new NaplatneCene(new Date(), null, ceneMapa, "2");
 
 
@@ -100,6 +101,134 @@ public class Application {
         valjevo.dodajDeonicu(noviSadValjevo);
         valjevo.dodajDeonicu(nisValjevo);
 
+
+        Date temp;
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, 2018);
+
+
+        cal.set(Calendar.MONTH, 1);
+        cal.set(Calendar.DATE, 2);
+        temp = cal.getTime();
+        vrbas.dodajProlazakVozila(new ProlazakVozila(noviSadVrbas, KategorijaVozila.A, temp, "NS 249", "1", cene.getCene().get(KategorijaVozila.A)));
+
+        cal.set(Calendar.MONTH, 1);
+        cal.set(Calendar.DATE, 4);
+        temp = cal.getTime();
+        vrbas.dodajProlazakVozila(new ProlazakVozila(noviSadVrbas, KategorijaVozila.A, temp, "NS 250", "2", cene.getCene().get(KategorijaVozila.A)));
+
+        cal.set(Calendar.MONTH, 1);
+        cal.set(Calendar.DATE, 3);
+        temp = cal.getTime();
+        vrbas.dodajProlazakVozila(new ProlazakVozila(nisVrbas, KategorijaVozila.C, temp, "NIS 222", "3", cene.getCene().get(KategorijaVozila.C)));
+
+        cal.set(Calendar.MONTH, 2);
+        cal.set(Calendar.DATE, 10);
+        temp = cal.getTime();
+        vrbas.dodajProlazakVozila(new ProlazakVozila(valjevoVrbas, KategorijaVozila.B, temp, "VALJ 225", "4", cene.getCene().get(KategorijaVozila.B)));
+
+        cal.set(Calendar.MONTH, 2);
+        cal.set(Calendar.DATE, 15);
+        temp = cal.getTime();
+        vrbas.dodajProlazakVozila(new ProlazakVozila(valjevoVrbas, KategorijaVozila.B, temp, "VALJ 1134", "5", cene.getCene().get(KategorijaVozila.B)));
+
+        cal.set(Calendar.MONTH, 3);
+        cal.set(Calendar.DATE, 12);
+        temp = cal.getTime();
+        vrbas.dodajProlazakVozila(new ProlazakVozila(nisVrbas, KategorijaVozila.D, temp, "NIS 6969", "6", cene.getCene().get(KategorijaVozila.D)));
+
+
+        cal.set(Calendar.MONTH, 2);
+        cal.set(Calendar.DATE, 3);
+        temp = cal.getTime();
+        noviSad.dodajProlazakVozila(new ProlazakVozila(vrbasNoviSad, KategorijaVozila.A, temp, "VS 6969", "7", cene.getCene().get(KategorijaVozila.A)));
+
+        cal.set(Calendar.MONTH, 3);
+        cal.set(Calendar.DATE, 5);
+        temp = cal.getTime();
+        noviSad.dodajProlazakVozila(new ProlazakVozila(vrbasNoviSad, KategorijaVozila.A, temp, "VS 5555", "8", cene.getCene().get(KategorijaVozila.A)));
+
+        cal.set(Calendar.MONTH, 4);
+        cal.set(Calendar.DATE, 6);
+        temp = cal.getTime();
+        noviSad.dodajProlazakVozila(new ProlazakVozila(valjevoNoviSad, KategorijaVozila.C, temp, "VALJ 2233", "9", cene.getCene().get(KategorijaVozila.C)));
+
+        cal.set(Calendar.MONTH, 4);
+        cal.set(Calendar.DATE, 7);
+        temp = cal.getTime();
+        noviSad.dodajProlazakVozila(new ProlazakVozila(nisNoviSad, KategorijaVozila.C, temp, "NIS 3333", "10", cene.getCene().get(KategorijaVozila.C)));
+
+        cal.set(Calendar.MONTH, 5);
+        cal.set(Calendar.DATE, 5);
+        temp = cal.getTime();
+        noviSad.dodajProlazakVozila(new ProlazakVozila(nisNoviSad, KategorijaVozila.D, temp, "NIS 6666", "11", cene.getCene().get(KategorijaVozila.C)));
+
+        cal.set(Calendar.MONTH, 2);
+        cal.set(Calendar.DATE, 10);
+        temp = cal.getTime();
+        noviSad.dodajProlazakVozila(new ProlazakVozila(nisNoviSad, KategorijaVozila.A, temp, "NIS 5555", "12", cene.getCene().get(KategorijaVozila.A)));
+
+
+        cal.set(Calendar.MONTH, 2);
+        cal.set(Calendar.DATE, 15);
+        temp = cal.getTime();
+        valjevo.dodajProlazakVozila(new ProlazakVozila(vrbasValjevo, KategorijaVozila.B, temp,"VS 3322", "13", cene.getCene().get(KategorijaVozila.B)));
+
+        cal.set(Calendar.MONTH, 3);
+        cal.set(Calendar.DATE, 19);
+        temp = cal.getTime();
+        valjevo.dodajProlazakVozila(new ProlazakVozila(vrbasValjevo, KategorijaVozila.B, temp,"VS 3322", "14", cene.getCene().get(KategorijaVozila.B)));
+
+        cal.set(Calendar.MONTH, 1);
+        cal.set(Calendar.DATE, 23);
+        temp = cal.getTime();
+        valjevo.dodajProlazakVozila(new ProlazakVozila(nisValjevo, KategorijaVozila.D, temp, "NIS 2269", "15", cene.getCene().get(KategorijaVozila.D)));
+
+        cal.set(Calendar.MONTH, 4);
+        cal.set(Calendar.DATE, 3);
+        temp = cal.getTime();
+        valjevo.dodajProlazakVozila(new ProlazakVozila(nisValjevo, KategorijaVozila.C, temp, "NIS 2233", "16", cene.getCene().get(KategorijaVozila.C)));
+
+        cal.set(Calendar.MONTH, 2);
+        cal.set(Calendar.DATE, 7);
+        temp = cal.getTime();
+        valjevo.dodajProlazakVozila(new ProlazakVozila(nisValjevo, KategorijaVozila.C, temp, "NIS 2222", "17", cene.getCene().get(KategorijaVozila.C)));
+
+        cal.set(Calendar.MONTH, 1);
+        cal.set(Calendar.DATE, 22);
+        temp = cal.getTime();
+        valjevo.dodajProlazakVozila(new ProlazakVozila(noviSadValjevo, KategorijaVozila.A, temp, "NS 6969", "18", cene.getCene().get(KategorijaVozila.A)));
+
+
+        cal.set(Calendar.MONTH, 1);
+        cal.set(Calendar.DATE, 3);
+        temp = cal.getTime();
+        nis.dodajProlazakVozila(new ProlazakVozila(vrbasNis, KategorijaVozila.D, temp, "VS 2222", "19", cene.getCene().get(KategorijaVozila.D)));
+
+        cal.set(Calendar.MONTH, 4);
+        cal.set(Calendar.DATE, 3);
+        temp = cal.getTime();
+        nis.dodajProlazakVozila(new ProlazakVozila(valjevoNis, KategorijaVozila.D, temp, "VALJ 3333", "20", cene.getCene().get(KategorijaVozila.D)));
+
+        cal.set(Calendar.MONTH, 3);
+        cal.set(Calendar.DATE, 4);
+        temp = cal.getTime();
+        nis.dodajProlazakVozila(new ProlazakVozila(valjevoNis, KategorijaVozila.C, temp, "VALJ 5555", "21", cene.getCene().get(KategorijaVozila.C)));
+
+        cal.set(Calendar.MONTH, 2);
+        cal.set(Calendar.DATE, 12);
+        temp = cal.getTime();
+        nis.dodajProlazakVozila(new ProlazakVozila(valjevoNis, KategorijaVozila.A, temp, "VALJ 6969", "22", cene.getCene().get(KategorijaVozila.A)));
+
+        cal.set(Calendar.MONTH, 3);
+        cal.set(Calendar.DATE, 15);
+        temp = cal.getTime();
+        nis.dodajProlazakVozila(new ProlazakVozila(noviSadNis, KategorijaVozila.B, temp, "NS 2233", "23", cene.getCene().get(KategorijaVozila.B)));
+
+        cal.set(Calendar.MONTH, 1);
+        cal.set(Calendar.DATE, 17);
+        temp = cal.getTime();
+        nis.dodajProlazakVozila(new ProlazakVozila(noviSadNis, KategorijaVozila.B, temp, "NS 3322", "24", cene.getCene().get(KategorijaVozila.B)));
 
         //FajlMenadzer.ucitajKorisnike("korisnici.txt", centrala);
         CentralWorkerWindow cww = new CentralWorkerWindow(centrala);
