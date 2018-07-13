@@ -1,5 +1,7 @@
 package model;
 
+import javafx.util.Pair;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -105,20 +107,48 @@ public class Centrala {
         }
     }
 
-    public void izvestajBrojVozila(Date pocetak, Date kraj) {
-
+    public Pair<ArrayList<ProlazakVozila>, Integer> izvestajBrojVozila(Date pocetak, Date kraj) {
+        ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<ProlazakVozila>();
+        this.radneStanice.sort(new RadnaStanicaComp());
+        for (RadnaStanica rs: this.radneStanice) {
+            Pair<ArrayList<ProlazakVozila>, Integer> temp = rs.izvestajBrojVozila(pocetak, kraj);
+            potrebniProlasci.addAll(temp.getKey());
+        }
+        return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, potrebniProlasci.size());
     }
 
-    public void izvestajIznosNovca(Date pocetak, Date kraj) {
-
+    public Pair<ArrayList<ProlazakVozila>, Integer> izvestajIznosNovca(Date pocetak, Date kraj) {
+        ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<ProlazakVozila>();
+        this.radneStanice.sort(new RadnaStanicaComp());
+        int ukupanIznos = 0;
+        for (RadnaStanica rs: this.radneStanice) {
+            Pair<ArrayList<ProlazakVozila>, Integer> temp = rs.izvestajIznosNovca(pocetak, kraj);
+            potrebniProlasci.addAll(temp.getKey());
+            ukupanIznos += temp.getValue();
+        }
+        return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, ukupanIznos);
     }
 
-    public void izvestajBrojVozilaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
-
+    public Pair<ArrayList<ProlazakVozila>, Integer> izvestajBrojVozilaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
+        ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<ProlazakVozila>();
+        this.radneStanice.sort(new RadnaStanicaComp());
+        for (RadnaStanica rs: this.radneStanice) {
+            Pair<ArrayList<ProlazakVozila>, Integer> temp = rs.izvestajBrojVozilaKat(pocetak, kraj, kategorija);
+            potrebniProlasci.addAll(temp.getKey());
+        }
+        return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, potrebniProlasci.size());
     }
 
-    public void izvestajNovcaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
-
+    public Pair<ArrayList<ProlazakVozila> izvestajNovcaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
+        ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<ProlazakVozila>();
+        this.radneStanice.sort(new RadnaStanicaComp());
+        int ukupanIznos = 0;
+        for (RadnaStanica rs: this.radneStanice) {
+            Pair<ArrayList<ProlazakVozila>, Integer> temp = rs.izvestajNovcaKat(pocetak, kraj, kategorija);
+            potrebniProlasci.addAll(temp.getKey());
+            ukupanIznos += temp.getValue();
+        }
+        return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, ukupanIznos);
     }
 
     public ArrayList<Korisnik> getKorisnici() {

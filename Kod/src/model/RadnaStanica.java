@@ -1,6 +1,9 @@
 package model;
 
+import javafx.util.Pair;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 public class RadnaStanica {
 
@@ -141,6 +144,51 @@ public class RadnaStanica {
             return true;
         }
         return false;
+    }
+
+    public Pair<ArrayList<ProlazakVozila>, Integer> izvestajBrojVozila(Date pocetak, Date kraj) {
+           ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<ProlazakVozila>();
+           for (ProlazakVozila pv: this.prolasci) {
+                if (pv.getVreme().compareTo(pocetak) > 0 && pv.getVreme().compareTo(kraj) < 0) {
+                    potrebniProlasci.add(pv);
+                }
+           }
+           return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, potrebniProlasci.size());
+    }
+
+    public Pair<ArrayList<ProlazakVozila>, Integer> izvestajIznosNovca(Date pocetak, Date kraj) {
+        ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<ProlazakVozila>();
+        int ukupanIznos = 0;
+        for (ProlazakVozila pv: this.prolasci) {
+            if (pv.getVreme().compareTo(pocetak) > 0 && pv.getVreme().compareTo(kraj) < 0) {
+                potrebniProlasci.add(pv);
+                ukupanIznos += pv.getCena();
+            }
+        }
+        return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, ukupanIznos);
+
+    }
+
+    public Pair<ArrayList<ProlazakVozila>, Integer> izvestajBrojVozilaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
+        ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<>();
+        for (ProlazakVozila pv: this.prolasci) {
+            if (pv.getVreme().compareTo(pocetak) > 0 && pv.getVreme().compareTo(kraj) <0 && kategorija.equals(pv.getKategorija())) {
+                potrebniProlasci.add(pv);
+            }
+        }
+        return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, potrebniProlasci.size());
+    }
+
+    public Pair<ArrayList<ProlazakVozila>, Integer> izvestajNovcaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
+        ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<>();
+        int ukupanIznos = 0;
+        for (ProlazakVozila pv: this.prolasci) {
+            if (pv.getVreme().compareTo(pocetak) > 0 && pv.getVreme().compareTo(kraj) <0 && kategorija.equals(pv.getKategorija())) {
+                potrebniProlasci.add(pv);
+                ukupanIznos += pv.getCena();
+            }
+        }
+        return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, ukupanIznos);
     }
 
     @Override

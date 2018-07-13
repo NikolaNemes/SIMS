@@ -8,14 +8,16 @@ public class ProlazakVozila {
     private KategorijaVozila kategorija;
     private Date vreme;
     private String registracija;
+    private int cena;
     private String id;
 
-    public ProlazakVozila(Deonica predjenaDeonica, KategorijaVozila kategorija, Date vreme, String registracija, String id) {
+    public ProlazakVozila(Deonica predjenaDeonica, KategorijaVozila kategorija, Date vreme, String registracija, String id, int cena) {
         this.predjenaDeonica = predjenaDeonica;
         this.kategorija = kategorija;
         this.vreme = vreme;
         this.registracija = registracija;
         this.id = id;
+        this.cena = cena;
     }
 
     public Deonica getPredjenaDeonica() {
@@ -56,5 +58,13 @@ public class ProlazakVozila {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getCena() {
+        return cena;
+    }
+
+    public void setCena(int cena) {
+        this.cena = cena;
     }
 }
