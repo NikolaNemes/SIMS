@@ -30,6 +30,7 @@ public class IzmeniDeonicuWindow extends JFrame {
             deonice[i][6] = String.valueOf(model.getDeonice().get(i).getTrenutneCene().getCene().get(KategorijaVozila.D));
         }
         JTable deoniceTabela = new JTable(deonice, kolone);
+        deoniceTabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         JScrollPane pane = new JScrollPane(deoniceTabela);
         JLabel unosLabela = new JLabel("Unos novih cena");
         JLabel cenaKatALabela = new JLabel("Kategorija A:");

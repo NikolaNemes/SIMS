@@ -5,7 +5,7 @@ import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class RadnaStanica {
+public class RadnaStanica implements Model{
 
     private String mesto;
     private boolean aktivna;

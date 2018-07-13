@@ -21,11 +21,13 @@ public class CentralWorkerWindow extends JFrame{
         setLayout(new MigLayout("wrap 5"));
         JMenuBar meniTraka = new JMenuBar();
         JMenu novoMeni = new JMenu("Novo");
+        JMenu izbrisiMeni = new JMenu("Izbrisi");
         JMenu izmeniMeni = new JMenu("Izmeni");
         JMenu izvestajMeni = new JMenu("Izvestaj");
         JMenu fajlMeni = new JMenu("Fajl");
         meniTraka.add(fajlMeni);
         meniTraka.add(novoMeni);
+        meniTraka.add(izbrisiMeni);
         meniTraka.add(izmeniMeni);
         meniTraka.add(izvestajMeni);
 
@@ -89,6 +91,25 @@ public class CentralWorkerWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 DodajKorisnikaWindow dialog = new DodajKorisnikaWindow(model);
+                dialog.setVisible(true);
+            }
+        });
+
+        JMenuItem izbrisiRSMeniDugme = new JMenuItem("Radnu stanicu");
+        izbrisiMeni.add(izbrisiRSMeniDugme);
+        izbrisiRSMeniDugme.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IzbrisiRadnuStanicuWindow dialog = new IzbrisiRadnuStanicuWindow(model);
+                dialog.setVisible(false);
+            }
+        });
+
+        JButton izbrisiRSDugme = new JButton("Izbrisi radnu stanicu");
+        izbrisiRSDugme.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IzbrisiRadnuStanicuWindow dialog = new IzbrisiRadnuStanicuWindow(model);
                 dialog.setVisible(true);
             }
         });
@@ -212,6 +233,7 @@ public class CentralWorkerWindow extends JFrame{
         add(brKatVozilaDugme, "wrap");
         add(zaradaSvihVozilaDugme, "split 5");
         add(zaradaKatVozilaDugme, "wrap");
+        add(izbrisiRSDugme, "wrap");
     }
 }
 

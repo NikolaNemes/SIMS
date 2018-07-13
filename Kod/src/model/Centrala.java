@@ -5,7 +5,7 @@ import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Centrala {
+public class Centrala implements Model{
 
     private ArrayList<Korisnik> korisnici;
     private ArrayList<Deonica> deonice;

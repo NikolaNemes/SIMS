@@ -1,10 +1,7 @@
 package viewer;
 
 import javafx.util.Pair;
-import model.Centrala;
-import model.KategorijaVozila;
-import model.ProlazakVozila;
-import model.TipIzvestaja;
+import model.*;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.swingx.JXDatePicker;
 
@@ -16,9 +13,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class IzvestajSvaVozilaWindow extends JFrame {
-    private Centrala model;
+    private Model model;
     private TipIzvestaja tipIzvestaja;
-    IzvestajSvaVozilaWindow(Centrala model, TipIzvestaja tipIzvestaja){
+    IzvestajSvaVozilaWindow(Model model, TipIzvestaja tipIzvestaja){
         setSize(800,600);
         setLayout(new MigLayout("wrap 5"));
         this.model = model;
