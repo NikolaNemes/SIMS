@@ -1,6 +1,5 @@
 package viewer;
 
-import jdk.nashorn.internal.scripts.JO;
 import model.*;
 import net.miginfocom.swing.MigLayout;
 
