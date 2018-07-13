@@ -4,7 +4,6 @@ package viewer;
 import UI.FajlMenadzer;
 import model.TipIzvestaja;
 import net.miginfocom.swing.MigLayout;
-import org.jdesktop.swingx.JXDatePicker;
 import model.Centrala;
 
 import javax.swing.*;
@@ -101,7 +100,7 @@ public class CentralWorkerWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 IzbrisiRadnuStanicuWindow dialog = new IzbrisiRadnuStanicuWindow(model);
-                dialog.setVisible(false);
+                dialog.setVisible(true);
             }
         });
 
@@ -110,6 +109,44 @@ public class CentralWorkerWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 IzbrisiRadnuStanicuWindow dialog = new IzbrisiRadnuStanicuWindow(model);
+                dialog.setVisible(true);
+            }
+        });
+
+        JMenuItem izbrisiDeonicuMeniDugme = new JMenuItem("Deonicu");
+        izbrisiMeni.add(izbrisiDeonicuMeniDugme);
+        izbrisiDeonicuMeniDugme.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IzbrisiDeonicuWindow dialog = new IzbrisiDeonicuWindow(model);
+                dialog.setVisible(true);
+            }
+        });
+
+        JButton izbrisiDeonicuDugme = new JButton("Izbrisi deonicu");
+        izbrisiDeonicuDugme.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IzbrisiDeonicuWindow dialog = new IzbrisiDeonicuWindow(model);
+                dialog.setVisible(true);
+            }
+        });
+
+        JMenuItem izbrisiKorisnikaMeniDugme = new JMenuItem("Korisnika");
+        izbrisiMeni.add(izbrisiKorisnikaMeniDugme);
+        izbrisiKorisnikaMeniDugme.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IzbrisiKorisnikaWindow dialog = new IzbrisiKorisnikaWindow(model);
+                dialog.setVisible(true);
+            }
+        });
+
+        JButton izbrisiKorisnikaDugme = new JButton("Izbrisi korisnika");
+        izbrisiKorisnikaDugme.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IzbrisiKorisnikaWindow dialog = new IzbrisiKorisnikaWindow(model);
                 dialog.setVisible(true);
             }
         });
@@ -224,6 +261,9 @@ public class CentralWorkerWindow extends JFrame{
         brKatVozilaDugme.setPreferredSize(new Dimension(304, 20));
         zaradaSvihVozilaDugme.setPreferredSize(new Dimension(304, 20));
         zaradaKatVozilaDugme.setPreferredSize(new Dimension(304, 20));
+        izbrisiRSDugme.setPreferredSize(new Dimension(202, 20));
+        izbrisiDeonicuDugme.setPreferredSize(new Dimension(201, 20));
+        izbrisiKorisnikaDugme.setPreferredSize(new Dimension(201, 20));
 
         add(novaRSDugme, "split 5");
         add(novaDeonicaDugme);
@@ -233,7 +273,9 @@ public class CentralWorkerWindow extends JFrame{
         add(brKatVozilaDugme, "wrap");
         add(zaradaSvihVozilaDugme, "split 5");
         add(zaradaKatVozilaDugme, "wrap");
-        add(izbrisiRSDugme, "wrap");
+        add(izbrisiRSDugme, "split 5");
+        add(izbrisiDeonicuDugme);
+        add(izbrisiKorisnikaDugme, "wrap");
     }
 }
 

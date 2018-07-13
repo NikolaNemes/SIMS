@@ -16,9 +16,20 @@ public class IzbrisiRadnuStanicuWindow extends JFrame {
         setLayout(new MigLayout("wrap 5"));
         JLabel izaberiLabela = new JLabel("Izaberite radnu stanicu za brisanje");
         String kolone[] = {"mesto"};
-        String podaci[][] = new String[model.getRadneStanice().size()][1];
+        int brAktivnihStanica = 0;
         for (int i = 0; i < model.getRadneStanice().size(); i++){
-            podaci[i][0] = model.getRadneStanice().get(i).getMesto();
+            if (model.getRadneStanice().get(i).isAktivna()){
+                brAktivnihStanica++;
+            }
+        }
+        String podaci[][] = new String[brAktivnihStanica][1];
+        int brUnetihStanica = 0;
+        for (int i = 0; i < model.getRadneStanice().size(); i++) {
+            RadnaStanica trenutna = model.getRadneStanice().get(i);
+            if (trenutna.isAktivna()) {
+                podaci[brUnetihStanica][0] = trenutna.getMesto();
+                brUnetihStanica++;
+            }
         }
         JTable radneStaniceTabela = new JTable(podaci, kolone);
         radneStaniceTabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);

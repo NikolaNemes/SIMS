@@ -18,7 +18,7 @@ public class Application {
         Centrala centrala = new Centrala();
         centrala = FajlMenadzer.ucitajKorisnike("korisnici.txt", centrala);
 
-        ArrayList<RadnaStanica> radneStanice = centrala.getRadneStanice();
+        /*ArrayList<RadnaStanica> radneStanice = centrala.getRadneStanice();
 
         RadnaStanica vrbas = new RadnaStanica("Vrbas", "Vrbas");
         radneStanice.add(vrbas);
@@ -99,7 +99,7 @@ public class Application {
         valjevo.dodajDeonicu(vrbasValjevo);
         valjevo.dodajDeonicu(noviSadValjevo);
         valjevo.dodajDeonicu(nisValjevo);
-
+        */
 
         //FajlMenadzer.ucitajKorisnike("korisnici.txt", centrala);
         CentralWorkerWindow cww = new CentralWorkerWindow(centrala);

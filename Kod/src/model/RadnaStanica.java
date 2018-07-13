@@ -18,7 +18,7 @@ public class RadnaStanica implements Model{
 
     public RadnaStanica(String mesto, String id) {
         this.mesto = mesto;
-        this.aktivna = false;
+        this.aktivna = true;
         this.prolasci = new ArrayList<ProlazakVozila>();
         this.naplatnaMesta = new ArrayList<NaplatnoMesto>();
         this.kvarovi = new ArrayList<Kvar>();
