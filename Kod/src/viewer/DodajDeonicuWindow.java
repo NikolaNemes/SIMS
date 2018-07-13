@@ -79,6 +79,7 @@ public class DodajDeonicuWindow extends JFrame {
             NaplatneCene cene = new NaplatneCene(new Date(), null, ceneKat, "1");
             d.setTrenutneCene(cene);
             d.getNaplatneCene().add(cene);
+            rs2.dodajDeonicu(d);
         }
         return uspeh;
     }
