@@ -25,7 +25,7 @@ public class NaplatnoMesto {
 
     public Kvar prijaviKvar(Kvar kvar) {
 
-
+        radnaStanica.getKvarovi().add(kvar);
         return null;
     }
 

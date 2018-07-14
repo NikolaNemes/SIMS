@@ -2,6 +2,7 @@ package viewer;
 
 import model.Centrala;
 import model.RadnaStanica;
+import model.TipKorisnika;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -11,7 +12,7 @@ import java.awt.event.ActionListener;
 public class IzborRadneStanice extends JFrame {
     private Centrala model;
     private RadnaStanica izabranaStanica;
-    IzborRadneStanice(Centrala model){
+    IzborRadneStanice(Centrala model, TipKorisnika tipKorisnika){
         this.model = model;
         setSize(800,600);
         setLayout(new MigLayout("wrap 5"));
@@ -46,7 +47,13 @@ public class IzborRadneStanice extends JFrame {
                     JOptionPane.showMessageDialog(temp, "Morate izabrati radnu stanicu");
                 }else {
                     izabranaStanica = model.pronadjiRadnuStanicu((String)radneStaniceTabela.getValueAt(radneStaniceTabela.getSelectedRow(), 0));
-                    JOptionPane.showMessageDialog(temp, "Stanica uspesno obrisana");
+                    if (tipKorisnika.equals(TipKorisnika.SEF_STANICE)) {
+                        SefStaniceWindow glavniProzor = new SefStaniceWindow(model, izabranaStanica);
+                        glavniProzor.setVisible(true);
+                    }else{
+                        IzborNaplatnogMesta izborNaplatnogMesta = new IzborNaplatnogMesta(izabranaStanica);
+                        izborNaplatnogMesta.setVisible(true);
+                    }
                     setVisible(false);
                 }
             }

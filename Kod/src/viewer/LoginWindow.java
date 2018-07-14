@@ -28,19 +28,30 @@ public class LoginWindow extends JFrame{
             public void actionPerformed(ActionEvent e){
                 Korisnik k = model.pronadjiKorisnika(korisnickoImePolje.getText());
                 if (k != null){
+                    if (!k.isAktivan()){
+                        if (brPokusaja == 2) {
+                            JOptionPane.showMessageDialog(temp, "Korisnik je obrisan. Pogresili ste 3 puta. Zatvaranje");
+                            temp.setVisible(false);
+                            System.exit(0);
+                        }else{
+                            JOptionPane.showMessageDialog(temp, "Korisnik je obrisan");
+                            brPokusaja++;
+                        }
+                    }
                     if (k.getLozinka().equals(lozinkaPolje.getText())){
                         if (k.getTip().equals(TipKorisnika.RADNIK_U_CENTRALI)){
-                            CentralWorkerWindow mainWindow = new CentralWorkerWindow(model);
-                            mainWindow.setVisible(true);
+                            CentralWorkerWindow glavniProzor = new CentralWorkerWindow(model);
+                            glavniProzor.setVisible(true);
                         }
-                        else (k.getTip().equals(TipKorisnika.SEF_STANICE)){
-                            //TODO
+                        else {
+                            IzborRadneStanice izborRadneStanice = new IzborRadneStanice(model, k.getTip());
+                            izborRadneStanice.setVisible(true);
                         }
 
                         temp.setVisible(false);
                     }else{
-                        if (brPokusaja == 3) {
-                            JOptionPane.showMessageDialog(temp, "Pogresili ste 3 puta. Zatvaranje");
+                        if (brPokusaja == 2) {
+                            JOptionPane.showMessageDialog(temp, "Pogresna lozinka. Pogresili ste 3 puta. Zatvaranje");
                             temp.setVisible(false);
                             System.exit(0);
                         }else{
@@ -49,8 +60,8 @@ public class LoginWindow extends JFrame{
                         }
                     }
                 }else{
-                    if (brPokusaja == 3){
-                        JOptionPane.showMessageDialog(temp, "Pogresili ste 3 puta. Zatvaranje");
+                    if (brPokusaja == 2){
+                        JOptionPane.showMessageDialog(temp, "Pogresno korisnicko ime. Pogresili ste 3 puta. Zatvaranje");
                         temp.setVisible(false);
                         System.exit(0);
                     }else {

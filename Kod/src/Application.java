@@ -17,9 +17,19 @@ public class Application {
         lw.setVisible(true);
         */
         Centrala centrala = new Centrala();
-        //centrala = FajlMenadzer.ucitajKorisnike("korisnici.txt", centrala);
+        centrala = FajlMenadzer.ucitajKorisnike("korisnici.txt", centrala);
 
-        /*ArrayList<RadnaStanica> radneStanice = centrala.getRadneStanice();
+        /*
+        centrala.getKorisnici().add(new Korisnik(TipKorisnika.RADNIK_U_CENTRALI, "dusanpanda",
+                "dusanko1", "Dusan", "Milunovic", "dusanpanda"));
+        centrala.getKorisnici().add(new Korisnik(TipKorisnika.SEF_STANICE, "nemespanda",
+                "dusanko1", "Nikola", "Nemes", "nemespanda"));
+        centrala.getKorisnici().add(new Korisnik(TipKorisnika.RADNIK_U_STANICI, "banepanda",
+                "dusanko1", "Branislav", "Andjelic", "banepanda"));
+        centrala.getKorisnici().add(new Korisnik(TipKorisnika.RADNIK_U_CENTRALI, "dzidzapanda",
+                "dusanko1", "Nikola", "Milunovic", "dzidzapanda"));
+
+        ArrayList<RadnaStanica> radneStanice = centrala.getRadneStanice();
 
         RadnaStanica vrbas = new RadnaStanica("Vrbas", "Vrbas");
         radneStanice.add(vrbas);
@@ -102,7 +112,6 @@ public class Application {
         valjevo.dodajDeonicu(vrbasValjevo);
         valjevo.dodajDeonicu(noviSadValjevo);
         valjevo.dodajDeonicu(nisValjevo);
-        */
 
         Date temp;
         Calendar cal = Calendar.getInstance();
@@ -231,9 +240,9 @@ public class Application {
         cal.set(Calendar.DATE, 17);
         temp = cal.getTime();
         nis.dodajProlazakVozila(new ProlazakVozila(noviSadNis, KategorijaVozila.B, temp, "NS 3322", "24", cene.getCene().get(KategorijaVozila.B)));
+        */
 
-        //FajlMenadzer.ucitajKorisnike("korisnici.txt", centrala);
-        CentralWorkerWindow cww = new CentralWorkerWindow(centrala);
-        cww.setVisible(true);
+        LoginWindow loginWindow = new LoginWindow(centrala);
+        loginWindow.setVisible(true);
     }
 }

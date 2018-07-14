@@ -7,6 +7,7 @@ import model.TipIzvestaja;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -137,7 +138,7 @@ public class SefStaniceWindow extends JFrame {
         });
 
         JMenuItem kvaroviMeniDugme = new JMenuItem("Kvarovi");
-        meniTraka.add(kvaroviMeniDugme);
+        izvestajMeni.add(kvaroviMeniDugme);
         kvaroviMeniDugme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -146,7 +147,7 @@ public class SefStaniceWindow extends JFrame {
             }
         });
 
-        JButton kvaroviDugme = new JButton("K0varovi");
+        JButton kvaroviDugme = new JButton("Kvarovi");
         kvaroviDugme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -154,6 +155,12 @@ public class SefStaniceWindow extends JFrame {
                 dialog.setVisible(true);
             }
         });
+        novoNaplatnoMestoDugme.setPreferredSize(new Dimension(250, 20));
+        brSvihVozilaDugme.setPreferredSize(new Dimension(250, 20));
+        brKatVozilaDugme.setPreferredSize(new Dimension(250, 20));
+        zaradaSvihVozilaDugme.setPreferredSize(new Dimension(250, 20));
+        zaradaKatVozilaDugme.setPreferredSize(new Dimension(250, 20));
+        kvaroviDugme.setPreferredSize(new Dimension(250, 20));
 
         add(meniTraka, "wrap");
         add(novoNaplatnoMestoDugme, "wrap");

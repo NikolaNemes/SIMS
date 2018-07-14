@@ -13,7 +13,6 @@ public class IzvestajKvarovi extends JFrame {
         setLayout(new MigLayout("wrap 5"));
         this.model = model;
         JLabel kvaroviLabela = new JLabel("Kvarovi");
-        JTable kvaroviTabela = new JTable();
         String kolone[] = {"Id", "Datum", "Opis"};
         String podaci[][] = new String[model.getKvarovi().size()][3];
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
@@ -22,7 +21,10 @@ public class IzvestajKvarovi extends JFrame {
             podaci[i][1] = sdf.format(model.getKvarovi().get(i).getVreme());
             podaci[i][2] = model.getKvarovi().get(i).getOpis();
         }
+        JTable kvaroviTabela = new JTable(podaci, kolone);
+        kvaroviTabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        JScrollPane pane = new JScrollPane(kvaroviTabela);
         add(kvaroviLabela, "wrap");
-        add(kvaroviTabela, "wrap");
+        add(pane, "wrap");
     }
 }
