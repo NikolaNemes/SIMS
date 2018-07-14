@@ -3,7 +3,7 @@ package model;
 public abstract class Uredjaj {
 
     protected TipUredjaja tipUredjaja;
-    protected boolean aktivan;
+    protected boolean aktivan = true;
     protected String id;
 
     public TipUredjaja getTipUredjaja() {

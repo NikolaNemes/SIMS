@@ -13,14 +13,4 @@ public enum TipKorisnika {
     public String toString() {
         return this.opis;
     }
-
-    public static TipKorisnika odrediTip(String tekst) {
-        if (tekst.equals("Radnik u stanici")) {
-            return RADNIK_U_STANICI;
-        } else if (tekst.equals("Sef stanice")) {
-            return SEF_STANICE;
-        } else {
-            return RADNIK_U_CENTRALI;
-        }
-    }
 }
