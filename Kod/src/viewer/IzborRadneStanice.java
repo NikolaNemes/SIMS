@@ -51,7 +51,7 @@ public class IzborRadneStanice extends JFrame {
                         SefStaniceWindow glavniProzor = new SefStaniceWindow(model, izabranaStanica);
                         glavniProzor.setVisible(true);
                     }else{
-                        IzborNaplatnogMesta izborNaplatnogMesta = new IzborNaplatnogMesta(izabranaStanica);
+                        IzborNaplatnogMesta izborNaplatnogMesta = new IzborNaplatnogMesta(model, izabranaStanica);
                         izborNaplatnogMesta.setVisible(true);
                     }
                     setVisible(false);
