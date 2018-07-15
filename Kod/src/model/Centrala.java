@@ -1,9 +1,11 @@
 package model;
 
+import javafx.util.Pair;
+
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Centrala {
+public class Centrala implements Model{
 
     private ArrayList<Korisnik> korisnici;
     private ArrayList<Deonica> deonice;
@@ -19,7 +21,7 @@ public class Centrala {
     public RadnaStanica pronadjiRadnuStanicu(String id) {
         RadnaStanica retVal = null;
         for (RadnaStanica i : this.radneStanice) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivna()) {
                 retVal = i;
                 break;
             }
@@ -39,7 +41,7 @@ public class Centrala {
 
     public void izbrisiRadnuStanicu(String id) {
         for (RadnaStanica i : this.radneStanice) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivna()) {
                 i.setAktivna(false);
                 break;
             }
@@ -49,7 +51,7 @@ public class Centrala {
     public Deonica pronadjiDeonicu(String id) {
         Deonica retVal = null;
         for (Deonica i : this.deonice) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivna()) {
                 retVal = i;
                 break;
             }
@@ -69,7 +71,7 @@ public class Centrala {
 
     public void izbrisiDeonicu(String id) {
         for (Deonica i : this.deonice) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivna()) {
                 i.setAktivna(false);
                 break;
             }
@@ -79,7 +81,7 @@ public class Centrala {
     public Korisnik pronadjiKorisnika(String id) {
         Korisnik retVal = null;
         for (Korisnik i : this.korisnici) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivan()) {
                 retVal = i;
                 break;
             }
@@ -98,26 +100,70 @@ public class Centrala {
 
     public void izbrisiKorisnika(String id) {
         for (Korisnik i : this.korisnici) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivan()) {
                 i.setAktivan(false);
                 break;
             }
         }
     }
 
-    public void izvestajBrojVozila(Date pocetak, Date kraj) {
-
+    public Pair<ArrayList<ProlazakVozila>, Integer> izvestajBrojVozila(Date pocetak, Date kraj) {
+        ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<ProlazakVozila>();
+        this.radneStanice.sort(new RadnaStanicaComp());
+        for (RadnaStanica rs: this.radneStanice) {
+            Pair<ArrayList<ProlazakVozila>, Integer> temp = rs.izvestajBrojVozila(pocetak, kraj);
+            potrebniProlasci.addAll(temp.getKey());
+        }
+        return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, potrebniProlasci.size());
     }
 
-    public void izvestajIznosNovca(Date pocetak, Date kraj) {
-
+    public Pair<ArrayList<ProlazakVozila>, Integer> izvestajIznosNovca(Date pocetak, Date kraj) {
+        ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<ProlazakVozila>();
+        this.radneStanice.sort(new RadnaStanicaComp());
+        int ukupanIznos = 0;
+        for (RadnaStanica rs: this.radneStanice) {
+            Pair<ArrayList<ProlazakVozila>, Integer> temp = rs.izvestajIznosNovca(pocetak, kraj);
+            potrebniProlasci.addAll(temp.getKey());
+            ukupanIznos += temp.getValue();
+        }
+        return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, ukupanIznos);
     }
 
-    public void izvestajBrojVozilaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
-
+    public Pair<ArrayList<ProlazakVozila>, Integer> izvestajBrojVozilaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
+        ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<ProlazakVozila>();
+        this.radneStanice.sort(new RadnaStanicaComp());
+        for (RadnaStanica rs: this.radneStanice) {
+            Pair<ArrayList<ProlazakVozila>, Integer> temp = rs.izvestajBrojVozilaKat(pocetak, kraj, kategorija);
+            potrebniProlasci.addAll(temp.getKey());
+        }
+        return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, potrebniProlasci.size());
     }
 
-    public void izvestajNovcaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
+    public Pair<ArrayList<ProlazakVozila>, Integer> izvestajNovcaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
+        ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<ProlazakVozila>();
+        this.radneStanice.sort(new RadnaStanicaComp());
+        int ukupanIznos = 0;
+        for (RadnaStanica rs: this.radneStanice) {
+            Pair<ArrayList<ProlazakVozila>, Integer> temp = rs.izvestajNovcaKat(pocetak, kraj, kategorija);
+            potrebniProlasci.addAll(temp.getKey());
+            ukupanIznos += temp.getValue();
+        }
+        return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, ukupanIznos);
+    }
 
+    public ArrayList<Korisnik> getKorisnici() {
+        return korisnici;
+    }
+
+    public ArrayList<Deonica> getDeonice() {
+        return deonice;
+    }
+
+    public ArrayList<RadnaStanica> getRadneStanice() {
+        return radneStanice;
+    }
+
+    public void setKorisnici(ArrayList<Korisnik> korisnici) {
+        this.korisnici = korisnici;
     }
 }

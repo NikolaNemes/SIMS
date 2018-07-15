@@ -1,30 +1,31 @@
 package UI;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+import model.Centrala;
+
+import java.io.*;
+
+
 
 public class FajlMenadzer {
 
-    public static void ucitajKorisnike(String korisnickiFajl) {
-        BufferedReader bf = null;
-        String linija = null;
-        try {
-            bf = new BufferedReader(new FileReader(korisnickiFajl));
-            while ((linija = bf.readLine()) != null) {
+    public static Centrala ucitajKorisnike(String korisnickiFajl, Centrala centrala) {
+        XStream xstream = new XStream(new DomDriver());
+        Centrala retVal = (Centrala)xstream.fromXML(new File(korisnickiFajl));
+        return retVal;
+    }
 
-            }
-            bf.close();
+    public static void snimiKorisnike(String korisnickiFajl, Centrala centrala) {
+        XStream xstream = new XStream(new DomDriver());
+        String xml = xstream.toXML(centrala);
+        PrintWriter pw = null;
+        try {
+            pw = new PrintWriter(new FileWriter(korisnickiFajl));
+            pw.print(xml);
+            pw.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    public static void snimiKorisnike() {
-
-    }
-
-
-
 }

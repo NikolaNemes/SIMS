@@ -8,11 +8,15 @@ public class NaplatneCene {
     private Date datumPocetka;
     private Date datumKraja;
     private Map<KategorijaVozila, Integer> cene;
+    private String id;
+    private boolean aktivne;
 
-    public NaplatneCene(Date datumPocetka, Date datumKraja, Map<KategorijaVozila, Integer> cene) {
+    public NaplatneCene(Date datumPocetka, Date datumKraja, Map<KategorijaVozila, Integer> cene, String id) {
         this.datumPocetka = datumPocetka;
         this.datumKraja = datumKraja;
         this.cene = cene;
+        this.id = id;
+        this.aktivne = true;
     }
 
     public Date getDatumPocetka() {
@@ -37,5 +41,21 @@ public class NaplatneCene {
 
     public void setCene(Map<KategorijaVozila, Integer> cene) {
         this.cene = cene;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public boolean isAktivne() {
+        return aktivne;
+    }
+
+    public void setAktivne(boolean aktivne) {
+        this.aktivne = aktivne;
     }
 }

@@ -1,10 +1,14 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Deonica {
 
     private boolean aktivna;
     private RadnaStanica polaznaStanica;
     private RadnaStanica dolaznaStanica;
+    private ArrayList<NaplatneCene> naplatneCene;
+    private NaplatneCene trenutneCene;
     private String id;
 
     public Deonica(RadnaStanica polaznaStanica, RadnaStanica dolaznaStanica, String id) {
@@ -12,6 +16,39 @@ public class Deonica {
         this.polaznaStanica = polaznaStanica;
         this.dolaznaStanica = dolaznaStanica;
         this.id = id;
+        this.trenutneCene = null;
+        this.naplatneCene = new ArrayList<NaplatneCene>();
+    }
+
+    public NaplatneCene pronadjiNaplatneCene(String id) {
+        NaplatneCene retVal = null;
+        for (NaplatneCene i : this.naplatneCene) {
+            if (i.getId().equals(id) && i.isAktivne()) {
+                retVal = i;
+                break;
+            }
+        }
+        return retVal;
+    }
+
+    public boolean dodajNaplatneCene(NaplatneCene naplatneCene) {
+        NaplatneCene temp = null;
+        temp = pronadjiNaplatneCene(naplatneCene.getId());
+        if (temp == null) {
+            this.naplatneCene.add(naplatneCene);
+            this.trenutneCene = naplatneCene;
+            return true;
+        }
+        return false;
+    }
+
+    public void izbrisiNaplatneCene(String id) {
+        for (NaplatneCene i : this.naplatneCene) {
+            if (i.getId().equals(id) && i.isAktivne()) {
+                i.setAktivne(false);
+                break;
+            }
+        }
     }
 
     public boolean isAktivna() {
@@ -44,5 +81,17 @@ public class Deonica {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public NaplatneCene getTrenutneCene() {
+        return trenutneCene;
+    }
+
+    public void setTrenutneCene(NaplatneCene trenutneCene) {
+        this.trenutneCene = trenutneCene;
+    }
+
+    public ArrayList<NaplatneCene> getNaplatneCene() {
+        return naplatneCene;
     }
 }

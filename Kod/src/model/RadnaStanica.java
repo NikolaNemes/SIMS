@@ -1,8 +1,11 @@
 package model;
 
-import java.util.ArrayList;
+import javafx.util.Pair;
 
-public class RadnaStanica {
+import java.util.ArrayList;
+import java.util.Date;
+
+public class RadnaStanica implements Model{
 
     private String mesto;
     private boolean aktivna;
@@ -11,12 +14,14 @@ public class RadnaStanica {
     private ArrayList<Kvar> kvarovi;
     private ArrayList<Deonica> deonice;
     private String id;
+    private int brUredjaja = 0;
 
     public RadnaStanica(String mesto, String id) {
         this.mesto = mesto;
-        this.aktivna = false;
+        this.aktivna = true;
         this.prolasci = new ArrayList<ProlazakVozila>();
         this.naplatnaMesta = new ArrayList<NaplatnoMesto>();
+        this.kvarovi = new ArrayList<Kvar>();
         this.deonice = new ArrayList<Deonica>();
         this.id = id;
     }
@@ -24,7 +29,7 @@ public class RadnaStanica {
     public NaplatnoMesto pronadjiNaplatnoMesto(String id) {
         NaplatnoMesto retVal = null;
         for (NaplatnoMesto i : this.naplatnaMesta) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivno()) {
                 retVal = i;
                 break;
             }
@@ -44,7 +49,7 @@ public class RadnaStanica {
 
     public void izbrisiNaplatnoMesto(String id) {
         for (NaplatnoMesto i : naplatnaMesta) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivno()) {
                 i.setAktivno(false);
                 break;
             }
@@ -54,7 +59,7 @@ public class RadnaStanica {
     public Kvar pronadjiKvar(String id) {
         Kvar retVal = null;
         for (Kvar i : this.kvarovi) {
-            if (i.getId().equals(id)) {
+            if (i.getId().equals(id) && i.isAktivan()) {
                 retVal = i;
                 break;
             }
@@ -74,7 +79,7 @@ public class RadnaStanica {
 
     public void izbrisiKvar(Kvar kvar) {
         for (Kvar i : this.kvarovi) {
-            if (i.equals(kvar)) {
+            if (i.equals(kvar) && i.isAktivan()) {
                 i.setAktivan(false);
                 break;
             }
@@ -84,24 +89,42 @@ public class RadnaStanica {
     public Deonica pronadjiDeonicu(RadnaStanica polaznaStanica) {
         Deonica retVal = null;
         for (Deonica i : this.deonice) {
-            if (i.getPolaznaStanica().equals(polaznaStanica)) {
+            if (i.getPolaznaStanica().equals(polaznaStanica) && i.isAktivna()) {
                 retVal = i;
                 break;
             }
         }
         return retVal;
     }
-    public Deonica pronadjeDeonicu(String id) {
+    public Deonica pronadjiDeonicu(String id) {
         Deonica retVal = null;
         for (Deonica i : deonice) {
-            if (i.getId().equals(id)) {
-
+            if (i.getId().equals(id) && i.isAktivna()) {
+                retVal = i;
                 break;
             }
         }
         return retVal;
     }
 
+    public boolean dodajDeonicu(Deonica deonica) {
+        Deonica temp = null;
+        temp = pronadjiDeonicu(deonica.getId());
+        if (temp == null) {
+            this.deonice.add(deonica);
+            return true;
+        }
+        return false;
+    }
+
+    public void izbrisiDeonicu(String id) {
+        for (Deonica i : this.deonice) {
+            if (i.getId().equals(id) && i.isAktivna()) {
+                i.setAktivna(false);
+            }
+            break;
+        }
+    }
 
     public ProlazakVozila pronadjiProlazakVozila(String id) {
         ProlazakVozila retVal = null;
@@ -124,7 +147,71 @@ public class RadnaStanica {
         return false;
     }
 
+    public Pair<ArrayList<ProlazakVozila>, Integer> izvestajBrojVozila(Date pocetak, Date kraj) {
+           ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<ProlazakVozila>();
+           for (ProlazakVozila pv: this.prolasci) {
+                if (pv.getVreme().compareTo(pocetak) >= 0 && pv.getVreme().compareTo(kraj) <= 0) {
+                    potrebniProlasci.add(pv);
+                }
+           }
+           return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, potrebniProlasci.size());
+    }
 
+    public Pair<ArrayList<ProlazakVozila>, Integer> izvestajIznosNovca(Date pocetak, Date kraj) {
+        ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<ProlazakVozila>();
+        int ukupanIznos = 0;
+        for (ProlazakVozila pv: this.prolasci) {
+            if (pv.getVreme().compareTo(pocetak) >= 0 && pv.getVreme().compareTo(kraj) <= 0) {
+                potrebniProlasci.add(pv);
+                ukupanIznos += pv.getCena();
+            }
+        }
+        return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, ukupanIznos);
+
+    }
+
+    public Pair<ArrayList<ProlazakVozila>, Integer> izvestajBrojVozilaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
+        ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<>();
+        for (ProlazakVozila pv: this.prolasci) {
+            if (pv.getVreme().compareTo(pocetak) >= 0 && pv.getVreme().compareTo(kraj) <= 0 && kategorija.equals(pv.getKategorija())) {
+                potrebniProlasci.add(pv);
+            }
+        }
+        return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, potrebniProlasci.size());
+    }
+
+    public Pair<ArrayList<ProlazakVozila>, Integer> izvestajNovcaKat(Date pocetak, Date kraj, KategorijaVozila kategorija) {
+        ArrayList<ProlazakVozila> potrebniProlasci = new ArrayList<>();
+        int ukupanIznos = 0;
+        for (ProlazakVozila pv: this.prolasci) {
+            if (pv.getVreme().compareTo(pocetak) >= 0 && pv.getVreme().compareTo(kraj) <= 0 && kategorija.equals(pv.getKategorija())) {
+                potrebniProlasci.add(pv);
+                ukupanIznos += pv.getCena();
+            }
+        }
+        return new Pair<ArrayList<ProlazakVozila>, Integer>(potrebniProlasci, ukupanIznos);
+    }
+
+    public ArrayList<ProlazakVozila> getProlasci() {
+        return prolasci;
+    }
+
+    public ArrayList<NaplatnoMesto> getNaplatnaMesta() {
+        return naplatnaMesta;
+    }
+
+    public ArrayList<Kvar> getKvarovi() {
+        return kvarovi;
+    }
+
+    public ArrayList<Deonica> getDeonice() {
+        return deonice;
+    }
+
+    @Override
+    public String toString() {
+        return mesto;
+    }
 
     public String getMesto() {
         return mesto;
@@ -152,5 +239,13 @@ public class RadnaStanica {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getBrUredjaja() {
+        return brUredjaja;
+    }
+
+    public void setBrUredjaja(int brUredjaja) {
+        this.brUredjaja = brUredjaja;
     }
 }
